@@ -52,7 +52,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="{{url('/')}}"><img src="{{url('img/lg.png')}}" /></a>
+              <a class="navbar-brand" href="{{url('/')}}"><img src="{{url('/')."/".Helper::get_setting_by_key('website_logo')}}" /></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
