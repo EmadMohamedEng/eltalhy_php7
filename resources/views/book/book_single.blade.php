@@ -1,11 +1,11 @@
 <!--
 /******************************************************************************
-* by Abdelrahman Haridy 
+* by Abdelrahman Haridy
 * Email    : abdelrahman.haridy01@gmail.com
 * LinkedIn : http://linkedin.com/pub/abdelrahman-haridy/60/9a3/531/
 * Phone    : 002 01020875298, 002 01020875298
 * website  : http://ivas.mobi/
-******************************************************************************/ 
+******************************************************************************/
 -->
 <!DOCTYPE html>
 <html>
@@ -27,11 +27,11 @@
         <style>
             .sj-book .p1,
             .sj-book .p2,
-            .sj-book .p3, 
-            .sj-book .p73, 
+            .sj-book .p3,
+            .sj-book .p73,
             .sj-book .p74{
                 background-color:white;
-                background-image:url({{str_replace('\\','/',url($cover->photo_path))}}) !important;
+                background-image:url({{url($cover->photo_path)}}) !important;
             }
         </style>
         <!-- js for books -->
@@ -69,7 +69,7 @@
                     <li><a href="{{ url('/videos/مقابلات')}}">مقابلات تلفزيونية</a></li>
                   </ul>
                 </li>
-                  
+
                   <li><a href="{{ url('/messages')}}">وما أبرئ نفسي</a></li>
                   <li><a href="{{ url('/contactus')}}">أتصل بنا</a></li>
               </ul>
@@ -132,11 +132,11 @@
         <script type="text/javascript">
 
             function loadApp() {
-                
+
                 var flipbook = $('.sj-book');
 
                 // Check if the CSS was already loaded
-                
+
                 if (flipbook.width()==0 || flipbook.height()==0) {
                     setTimeout(loadApp, 10);
                     return;
@@ -169,7 +169,7 @@
 
                     if (data.scrollTimer)
                         clearInterval(data.scrollTimer);
-                    
+
                     data.scrollTimer = setTimeout(function(){
                         data.scrollX = undefined;
                         data.scrollPage = undefined;
@@ -207,7 +207,7 @@
 
                         if (window._thumbPreview)
                             _thumbPreview.removeClass('show');
-                        
+
                         $('.sj-book').turn('page', Math.max(1, $(this).slider('value')*2 - 2));
 
                     }
@@ -215,7 +215,7 @@
 
 
                 // URIs
-                
+
                 Hash.on('^page\/([0-9]*)$', {
                     yep: function(path, parts) {
 
@@ -247,7 +247,7 @@
 
                         break;
                         case next:
-                            
+
                             $('.sj-book').turn('next');
 
                         break;
@@ -269,13 +269,13 @@
                     pages: 74,
                     when: {
                         turning: function(e, page, view) {
-                            
+
                             var book = $(this),
                                 currentPage = book.turn('page'),
                                 pages = book.turn('pages');
 
                             if (currentPage>3 && currentPage<pages-3) {
-                            
+
                                 if (page==1) {
                                     book.turn('page', 2).turn('stop').turn('page', page);
                                     e.preventDefault();
@@ -298,7 +298,7 @@
                             }
 
                             updateDepth(book, page);
-                            
+
                             if (page>=2)
                                 $('.sj-book .p2').addClass('fixed');
                             else
@@ -310,7 +310,7 @@
                                 $('.sj-book .p73').removeClass('fixed');
 
                             Hash.go('page/'+page).update();
-                                
+
                         },
 
                         turned: function(e, page, view) {
@@ -322,7 +322,7 @@
                             }
 
                             updateDepth(book);
-                            
+
                             $('#slider').slider('value', getViewNumber(book, page));
 
                             book.turn('center');
@@ -330,19 +330,19 @@
                         },
 
                         start: function(e, pageObj) {
-                    
+
                             moveBar(true);
 
                         },
 
                         end: function(e, pageObj) {
-                        
+
                             var book = $(this);
 
                             updateDepth(book);
 
                             setTimeout(function() {
-                                
+
                                 $('#slider').slider('value', getViewNumber(book));
 
                             }, 1);
@@ -420,11 +420,11 @@
                 $.ajax({url: "{{url('book/'.$book->id.'/loadpage')}}/"+page }).
                     done(function(pageHtml) {
                         console.log(pageHtml);
-                        var html = '<div class="book-content">\
-                                        <p class="center-pic">\
-                                            <img src="{{url()}}/'+pageHtml['path']+'">\
-                                        </p>\
-                                        </div>';
+                        var html = `<div class="book-content">
+                                        <p class="center-pic">
+                                            <img src="{{url("/")."/"}}${pageHtml['path']}">
+                                        </p>
+                                        </div>`;
                         $('.sj-book .p' + page).html(html);
                     });
 
@@ -491,7 +491,7 @@
                             tmpContainer.appendTo($('body'));
 
                             $('body').css({'overflow': 'hidden'});
-                            
+
                             tmpPic.css({
                                 margin: position.top + 'px ' + position.left+'px'
                             }).
@@ -506,7 +506,7 @@
                     $('.sj-book').turn('disable', true);
 
                     $(window).resize(zoomOut);
-                    
+
                     tmpContainer.click(zoomOut);
 
                     tmpPic.load(function() {
@@ -531,8 +531,8 @@
 
                         $('.samples .bar').css({visibility: 'hidden'});
                         $('#slider-bar').hide();
-                        
-                    
+
+
                         $('#book-zoom').transform(
                             'translate('+translate.left+'px, '+translate.top+'px)' +
                             'scale('+zoomFactor+', '+zoomFactor+')');
@@ -631,11 +631,11 @@
             </script>
         <!--//End Contant-->
         <!--Footer Section -->
-       <footer style="background-image: url(http://localhost/eltalhy/img/bg_footer.jpg);"> 
+       <footer style="background-image: url(http://localhost/eltalhy/img/bg_footer.jpg);">
             <div class="container">
                 <ul class="list-unstyled">
                     <li><a class="sc" href="#"><i class="fa fa-soundcloud"></i></a></li>
-                    <li><a class="tl" href="#"><i class="fa fa-telegram"></i></a></li>                    
+                    <li><a class="tl" href="#"><i class="fa fa-telegram"></i></a></li>
                     <li><a class="tw" href="#"><i class="fa fa-twitter"></i></a></li>
                     <li><a class="ns" href="#"><i class="fa fa-instagram"></i></a></li>
                     <li><a class="gp" href="#"><i class="fa fa-youtube"></i></a></li>

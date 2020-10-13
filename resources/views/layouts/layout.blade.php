@@ -27,7 +27,7 @@
         <link href="{{ url('css/style.css')}}" rel="stylesheet">
         <!--[if lt IE 9]> <script src="js/html5shiv.min.js"></script> <![endif]-->
     </head>
-    <body style="background-image: url(img/black-pattern.png)">
+    <body style="background-image: url({{url('img/black-pattern.png')}})">
         <div class="social_icon">
         <ul class="list-unstyled">
                     <li><a class="fb" target="_blank" href="{{$settings['facebook_link']}}"><i class="fa fa-facebook"></i></a></li>

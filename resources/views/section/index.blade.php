@@ -13,7 +13,7 @@
     <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Associate <span class="caret"></span> </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="http://localhost:8000/book">Book</a></li>
+            <li><a href="{{url('book')}}">Book</a></li>
         </ul>
     </div>
     <br>
@@ -29,7 +29,7 @@
             <th>actions</th>
         </thead>
         <tbody>
-            @foreach($sections as $section) 
+            @foreach($sections as $section)
             <tr>
                 <td>{!!$section->title!!}</td>
                 <td>{!!$section->page_number!!}</td>
@@ -44,7 +44,7 @@
                     <a href = '#' class = 'viewShow btn btn-warning btn-xs' data-link = '/section/{!!$section->id!!}'><i class = 'material-icons'>info</i></a>
                 </td>
             </tr>
-            @endforeach 
+            @endforeach
         </tbody>
     </table>
     {!! $sections->render() !!}

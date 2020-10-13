@@ -41,7 +41,7 @@ class AudioController extends Controller
     {
         $title = 'Create - audio';
         $albums = Album::all();
-        return view('audio.create',compact('categories','title','albums'));
+        return view('audio.create',compact('title','albums'));
     }
 
     /**
@@ -63,18 +63,18 @@ class AudioController extends Controller
         }
         $audio = new Audio();
 
-        
+
         $audio->title = $request->title;
 
-        
+
         $audio->sound_link = $request->soundcloud_link;
 
         $audio->album_id = $request->album_id;
 
-        
+
         $audio->description = $request->description;
 
-        
+
         $audio->slug = str_slug($request->title);
 
         $audio->save();
@@ -108,10 +108,10 @@ class AudioController extends Controller
     public function edit($id,Request $request)
     {
         $title = 'Edit - audio';
-        
+
         $audio = Audio::findOrfail($id);
         $albums = Album::all();
-    
+
         return view('audio.edit',compact('title','audio','albums'));
     }
 
@@ -134,15 +134,15 @@ class AudioController extends Controller
             return back()->withErrors($validator)->withInput();
         }
         $audio = Audio::findOrfail($id);
-    	
+
         $audio->title = $request->title;
-        
+
         $audio->sound_link = $request->soundcloud_link;
-        
+
         $audio->album_id = $request->album_id;
-        
+
         $audio->description = $request->description;
-        
+
         $audio->slug = str_slug($request->title);
 
         $audio->save();
@@ -172,7 +172,7 @@ class AudioController extends Controller
             $settings[$setting->key] = $setting->value;
         }
         $albums = Album::all();
-        return view('audio.all_sounds',compact('audios','settings','albums'));
+        return view('audio.all_sounds',compact('settings','albums'));
     }
 
     public function audios_by_album($id)
