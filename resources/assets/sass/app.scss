@@ -1,0 +1,106 @@
+
+// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+/******************************************************************************
+* by Abdelrahman Haridy 
+* Email    : abdelrahman.haridy01@gmail.com
+* LinkedIn : http://linkedin.com/pub/abdelrahman-haridy/60/9a3/531/
+* Phone    : 002 01020875298, 002 01020875298
+* website  : http://ivas.mobi/
+******************************************************************************/
+
+/* colors 
+------------------------------*/
+$mainColor : #ff5;
+$secColor : #4c4c68;
+
+/* fonts 
+------------------------------*/
+$mainFont : 'Changa', sans-serif;
+
+
+/* FrameWork 
+------------------------------*/
+body {
+    font-family: $mainFont;
+    color: $secColor;
+}
+::-moz-selection{ 
+    background: $mainColor;
+    color:#fff !important; 
+}
+::selection{ 
+    background: $mainColor; 
+    color:#fff; 
+}
+::-webkit-selection{ 
+    background: $mainColor; 
+    color:#fff; 
+}
+a {
+    color: $mainColor;
+    transition: 0.3s;
+    text-decoration: none;
+}
+a:focus, a:hover {
+    color: $secColor;
+    text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $secColor;
+    
+}
+section {
+    padding: 50px 0;
+    h3 {
+        margin-bottom: 30px;
+    }
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 4px $secColor;
+}
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+/* Header 
+------------------------------*/
+
+
+
+
+/* Responsive Styles
+------------------------------*/
+
+/* Custom, iPhone Retina */ 
+@media (max-width: 320px) {
+    color: inatial;
+}
+
+/* Extra Small Devices, Phones */
+@media (min-width: 321px) and ( max-width: 767px) {
+ color: inatial;
+}
+
+/* Small Devices, Tablets */
+@media (min-width: 768px) and ( max-width: 991px) {
+ color: inatial;
+}
+
+/* Medium Devices, Desktops */
+@media (min-width: 992px) and ( max-width: 1199px) {
+ color: inatial;
+}
+
+/* Large Devices, Wide Screens */
+@media (min-width: 1200px) {
+ color: inatial;    
+}
