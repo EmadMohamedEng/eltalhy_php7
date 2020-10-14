@@ -95,8 +95,6 @@ class ContactController extends Controller
 
         // mail($mail, $subject, $message);
 
-        return view('contact_us', compact('contact'));
-
         Mail::send('contact_us', ['contact' => $contact], function ($messages) use ($mail, $subject, $contact) {
             $messages->from($contact->email, $contact->name);
             $messages->to($mail, 'Eltalhy Contact Us');
