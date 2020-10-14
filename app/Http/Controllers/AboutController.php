@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use File;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\About;
 use Validator;
-use File;
+use App\Mentor;
 use App\Setting;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 class AboutController extends Controller
 {
     /**
@@ -33,7 +35,7 @@ class AboutController extends Controller
      public function create()
     {
         $title = 'Create - about';
-        
+
         return view('about.create',compact('title'));
     }
 
@@ -57,28 +59,28 @@ class AboutController extends Controller
 
         $about = new About();
 
-        
+
         $about->title = $request->title;
 
-        
+
         $about->description = $request->description;
 
         if ($request->hasFile('photo_path')) {
             $ext =  $request->file('photo_path')->getClientOriginalExtension();
-        
+
             if ( $ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' ) {
-                
+
                 $path = $request->file('photo_path')->move('uploads/about/', time().'_'.$request->file('photo_path')->getClientOriginalName());
-                
-                $about->photo_path = $path;            
+
+                $about->photo_path = $path;
             }else{
-                
+
                 $request->session()->flash('failed', 'file is not an image');
                 return back();
-                
+
             }
         }
-        
+
         $about->save();
 
         $request->session()->flash('success', 'created successfuly');
@@ -108,7 +110,7 @@ class AboutController extends Controller
     public function edit($id,Request $request)
     {
         $title = 'Edit - about';
-        
+
         $about = About::findOrfail($id);
         return view('about.edit',compact('title','about'  ));
     }
@@ -130,14 +132,14 @@ class AboutController extends Controller
             return back()->withErrors($validator)->withInput();
         }
         $about = About::findOrfail($id);
-        
+
         $about->title = $request->title;
-        
+
         $about->description = $request->description;
-        
+
         if ($request->hasFile('photo_path')) {
             $ext =  $request->file('photo_path')->getClientOriginalExtension();
-            
+
             $validator = Validator::make($request->all(),[
                 'photo_path' => 'image'
             ]);
@@ -149,23 +151,23 @@ class AboutController extends Controller
                 File::delete($about->photo_path);
             }
             if ( $ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' ) {
-                
+
                 $path = $request->file('photo_path')->move('uploads/about/', time().'_'.$request->file('photo_path')->getClientOriginalName());
-                
-                $about->photo_path = $path;            
+
+                $about->photo_path = $path;
             }else{
-                
+
                 $request->session()->flash('failed', 'file is not an image');
                 return back();
-                
+
             }
         }
-        
-        
-        
+
+
+
         $about->save();
         $request->session()->flash('success', 'updated successfully');
-        
+
         return redirect('about');
     }
 
@@ -180,7 +182,7 @@ class AboutController extends Controller
         $about = About::findOrfail($id);
         if ($about->photo_path) {
             File::delete($about->photo_path);
-        } 
+        }
         $about->delete();
         return back();
     }
@@ -192,7 +194,8 @@ class AboutController extends Controller
         foreach ($settings_ as $setting) {
             $settings[$setting->key] = $setting->value;
         }
-        $about = About::where('title','summery')->first();
-        return view('about.about',compact('about','settings'));
+        $about = About::whereNotIn('title',['summery', 'short_summery'])->get();
+        $mentors = Mentor::all();
+        return view('about.about',compact('about','settings', 'mentors'));
     }
 }

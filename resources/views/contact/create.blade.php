@@ -64,14 +64,14 @@
                     <div class="col-md-12 form-group">
                         <button type="submit">إرسال</button>
                     </div>
-                    
+
                 </form>
 <div class="phone_number">
-    <h3>رقم التواصل    : <span>01122414414</span></h3>
+    <h3>رقم التواصل    : <span>{{Helper::get_setting_by_key('phone')}}</span></h3>
 </div>
             </div>
         </div>
-        
+
     </div>
 </section>
 @section('scriptActive')
@@ -79,4 +79,4 @@
    $('a[href="{{ url('/contactus')}}"]').parent().addClass('active');
 </script>
 @stop
-@stop 
+@stop

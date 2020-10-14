@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\App;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Contact;
-use App\Setting;
-use Amranidev\Ajaxis\Ajaxis;
 use URL;
 use Validator;
+use App\Contact;
+use App\Setting;
+use App\Helpers\Helper;
+use Amranidev\Ajaxis\Ajaxis;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use App\Http\Controllers\Controller;
+use Mail;
+
 /**
  * Class ContactController.
  *
@@ -43,7 +46,7 @@ class ContactController extends Controller
             $settings[$setting->key] = $setting->value;
         }
         $title = 'Create - contact';
-        
+
         return view('contact.create',compact('settings'));
     }
 
@@ -73,25 +76,39 @@ class ContactController extends Controller
 
         $contact = new Contact();
 
-        
+
         $contact->name = $request->contact_name;
 
-        
+
         $contact->email = $request->contact_email;
 
-        
+
         $contact->message = $request->contact_message;
 
-        
-        
         $contact->save();
+
+        $mail = Helper::get_setting_by_key('Email');
+
+        $subject = "Eltalhy Website";
+
+        // $message = "Name: $contact->name<hr>Email: $contact->email<hr>Message: $contact->message";
+
+        // mail($mail, $subject, $message);
+
+        return view('contact_us', compact('contact'));
+
+        Mail::send('contact_us', ['contact' => $contact], function ($messages) use ($mail, $subject, $contact) {
+            $messages->from($contact->email, $contact->name);
+            $messages->to($mail, 'Eltalhy Contact Us');
+            $messages->subject($subject);
+        });
 
         $request->session()->flash('success', 'تام ارسال الرساله بنجاح');
 
         return  back();
     }
 
-    
+
     /**
      * Remove the specified resource from storage.
      *

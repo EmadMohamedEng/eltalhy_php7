@@ -57,7 +57,9 @@
                           <div class="col-sm-9 col-lg-10 controls">
                              <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
-                                   <img src="{{url($about->photo_path)}}" alt="" />
+                                    @isset($about->photo_path)
+                                    <img src="{{url($about->photo_path)}}" alt="" />
+                                    @endisset
                                 </div>
                                 <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                 <div>

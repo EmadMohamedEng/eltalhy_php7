@@ -94,6 +94,7 @@
           $('.lightGallery').attr('action', 'inactive');
           $("img.lazy").lazyload();
           $(`#${page}`).lightGallery();
+
         }
       })
     }
