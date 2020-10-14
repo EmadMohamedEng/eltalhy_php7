@@ -631,7 +631,7 @@
             </script>
         <!--//End Contant-->
         <!--Footer Section -->
-       <footer style="background-image: url(http://localhost/eltalhy/img/bg_footer.jpg);">
+       <footer style="background-image: url({{url('img/bg_footer.jpg')}})">
             <div class="container">
                 <ul class="list-unstyled">
                     <li><a class="sc" href="#"><i class="fa fa-soundcloud"></i></a></li>

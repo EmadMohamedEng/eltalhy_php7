@@ -45,16 +45,18 @@
                 </ul>
             </div>
         </div>
+        <div class="container lightGallery" action="inactive" page='1'>
             <ul id="lightGallery" class="gallery list-unstyled">
                 @foreach($photos as $photo)
-                    <li class="category_{{$photo->category->id}}" data-src="{{url($photo->photo_path)}}"> 
+                    <li class="category_{{$photo->category->id}}" data-src="{{url($photo->photo_path)}}">
                         <a href="#">
                         <img class="lazy" data-original="{{url($photo->photo_path)}}" />
                         <p>{{$photo->title}}</p>
-                        </a> 
+                        </a>
                     </li>
                 @endforeach
-            </ul>	
+            </ul>
+        </div>
     </div>
 </section>
 <!-- //photos section -->
@@ -64,6 +66,39 @@
 <script type="text/javascript">
    $('a[href="{{ url('/gallary')}}"]').parent().addClass('active');
 </script>
+<script>
+    $(window).on("scroll", function(Event) {
+      Event.preventDefault();
+      $(this).siblings().removeClass('active');
+      $(this).addClass('active');
+      var action = $('.lightGallery').attr('action');
+      var page = $('.lightGallery').attr('page');
+      console.log(page);
+    //   if ($(window).scrollTop() + $(window).height() > $(".lightGallery").height() && action == 'inactive') {
+      if ($(window).scrollTop() + $(window).height() == $(document).height() && action == 'inactive') {
+        $('.lightGallery').attr('action', 'active');
+        page++;
+        $('.lightGallery').attr('page', page);
+        load_snap_data(page);
+      }
+    });
+
+    function load_snap_data(page) {
+      $('.load').show();
+      $.ajax({
+        type: 'GET',
+        url: '?page=' + page,
+        success: function(data) {
+
+          $('#lightGallery').append(data);
+          $('.lightGallery').attr('action', 'inactive');
+          $("img.lazy").lazyload();
+          $(`#${page}`).lightGallery();
+        }
+      })
+    }
+
+  </script>
 @stop
 
 @stop

@@ -38,15 +38,19 @@ class PhotoController extends Controller
         return view('photo.index',compact('photos','title','categories'));
     }
 
-    public function gallary()
+    public function gallary(Request $request)
     {
+        $photos = Photo::paginate(9);
+
+        if($request->ajax()){
+            return view('photo.photo_pages',compact('photos'))->render();
+        }
 
         $settings_ = Setting::all();
         $settings = array();
         foreach ($settings_ as $setting) {
             $settings[$setting->key] = $setting->value;
         }
-        $photos = Photo::all();
         $categories = Category::all();
         return view('photo.gallary',compact('photos','categories','settings'));
     }
@@ -58,9 +62,9 @@ class PhotoController extends Controller
     public function create()
     {
         $title = 'Create - photo';
-        
+
         $categories = Category::all();
-        
+
         return view('photo.create',compact('title','categories'));
     }
 
@@ -84,18 +88,18 @@ class PhotoController extends Controller
         // return $request->all();
         $photo = new Photo();
 
-        
+
         $photo->title = $request->title;
 
-        
+
         $photo->photo_path = $request->photo_path;
 
-        
-        
+
+
         $photo->category_id = $request->category_id;
 
         if ($request->hasFile('photo_path')) {
-            $path = $request->file('photo_path')->move('uploads/photo/', time().'_'.$request->file('photo_path')->getClientOriginalName());    
+            $path = $request->file('photo_path')->move('uploads/photo/', time().'_'.$request->file('photo_path')->getClientOriginalName());
             $photo->photo_path = $path;
         }
 
@@ -104,7 +108,7 @@ class PhotoController extends Controller
         return redirect('photo');
     }
 
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -113,11 +117,11 @@ class PhotoController extends Controller
      */
     public function destroy($id)
     {
-         
+
         $photo = Photo::findOrfail($id);
         if ($photo->photo_path) {
             File::delete($photo->photo_path);
-        } 
+        }
      	$photo->delete();
         return back();
     }

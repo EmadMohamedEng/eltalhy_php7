@@ -80,7 +80,7 @@
 
         <!--//End Contant-->
         <!--Footer Section -->
-        <footer style="background-image: url(eltalhy/img/bg_footer.jpg)">
+        <footer style="background-image: url({{url('img/bg_footer.jpg')}})">
             <div class="container">
                 <ul class="list-unstyled">
                     <li><a class="sc" target="_blank" href="{{$settings['soundcloud_link']}}"><i class="fa fa-soundcloud"></i></a></li>
