@@ -1,6 +1,15 @@
 @extends('layouts.layout')
 
 @section('content')
+
+<style>
+  @media (max-width: 767px) and (min-width: 321px) {
+    .videos_pages .thumbnail {
+      margin-top: 7%;
+    }
+  }
+</style>
+
 <!-- clear section -->
 <section class="clear_sec in_pages" style="background-image: url(../img/bg_pages.jpg);">
     <div class="bg-opacity">
@@ -40,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-            @endforeach          
+            @endforeach
         </div>
         <div class="row">
             <div class="pages_numbers">
@@ -54,4 +63,4 @@
    $('a[href="{{ url('#')}}"]').parent().addClass('active');
 </script>
 @stop
-@stop 
+@stop

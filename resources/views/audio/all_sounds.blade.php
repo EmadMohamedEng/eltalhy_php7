@@ -46,4 +46,4 @@
    $('a[href="{{ url('/sounds')}}"]').parent().addClass('active');
 </script>
 @stop
-@stop 
+@stop

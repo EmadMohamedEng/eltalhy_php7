@@ -47,13 +47,13 @@
             </div>
             <div class="col-md-6">
                 <div class="pull-left">
-                    <ul class="list-unstyled">                  
+                    <ul class="list-unstyled">
                         <li><a href="{{'https://twitter.com/intent/tweet?url='.url('video/'.$video->slug)}}"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="{{'https://www.facebook.com/sharer/sharer.php?u='.url('video/'.$video->slug)}}"><i class="fa fa-facebook"></i></a></li>
                     </ul>
                 </div>
             </div>
-            
+
         </div>
         <hr>
         <!-- next posts -->
@@ -93,4 +93,4 @@
    $('a[href="{{ url('#')}}"]').parent().addClass('active');
 </script>
 @stop
-@stop 
+@stop
