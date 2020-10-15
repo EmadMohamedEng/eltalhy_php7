@@ -67,7 +67,7 @@
                     <p class="date">5 أبريل 2017</p>
                 </div>
             </div>
-            
+
         </div>
         <div class="row">
             <div class="pages_numbers">

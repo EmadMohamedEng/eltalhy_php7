@@ -122,9 +122,9 @@
                         <div id="slider"></div>
                     </div>-->
                 </div>
-                <div class="hidden-md hidden-lg">
+                <div class="hidden-md hidden-lg pdf_download">
                     <object data="{{str_replace('\\','/',($book->photo_path))}}" type="application/pdf" width="100%" height="100%">
-                        <p>Alternative text - include a link <a href="{{url('book/'.$book->id.'/download')}}">to the PDF!</a></p>
+                        <p style="font-size: 2rem;">Alternative text - include a link <a href="{{url('book/'.$book->id.'/download')}}">to the PDF!</a></p>
                     </object>
                 </div>
             </div>
