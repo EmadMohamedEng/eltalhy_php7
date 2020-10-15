@@ -110,6 +110,16 @@ Route::group(['middleware'=> 'auth'], function() {
 });
 
 Route::group(['middleware'=> 'auth'], function() {
+    Route::get('mentor', 'MentorController@index');
+    Route::get('mentor/new', 'MentorController@create');
+    Route::post('mentor', 'MentorController@store');
+    Route::get('mentor/{id}/show', 'MentorController@show');
+    Route::get('mentor/{id}/edit', 'MentorController@edit');
+    Route::post('mentor/{id}/update', 'MentorController@update');
+    Route::get('mentor/{id}/delete', 'MentorController@destroy');
+});
+
+Route::group(['middleware'=> 'auth'], function() {
     Route::get('book', 'BookController@index');
     Route::get('book/new', 'BookController@create');
     Route::get('book/{id}/delete', 'BookController@destroy');

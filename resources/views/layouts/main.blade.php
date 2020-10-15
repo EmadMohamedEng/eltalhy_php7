@@ -53,7 +53,7 @@
 
             <!-- BEGIN Navbar Buttons -->
             <ul class="nav flaty-nav pull-right">
-             
+
                 <!-- BEGIN Button User -->
                 <li class="user-profile">
                     <a data-toggle="dropdown" href="#" class="user-menu dropdown-toggle">
@@ -271,6 +271,21 @@
                         <!-- END Submenu -->
                     </li>
 
+                    <li id="mentor">
+                      <a href="#" class="dropdown-toggle">
+                          <i class="fa fa-picture-o"></i>
+                          <span>Mentor</span>
+                          <b class="arrow fa fa-angle-right"></b>
+                      </a>
+
+                      <!-- BEGIN Submenu -->
+                      <ul class="submenu">
+                          <li id="mentor-index"><a href="{{url('mentor')}}">Mentor</a></li>
+                          <li id="mentor-new"><a href="{{url('mentor/new')}}">New Mentor</a></li>
+                      </ul>
+                      <!-- END Submenu -->
+                  </li>
+
                     <li id="book">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa  fa-info"></i>
@@ -335,9 +350,9 @@
         <script src="{{url('assets/bootstrap-daterangepicker/date.js')}}"></script>
         <script src="{{url('assets/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
         <script src="{{url('assets/bootstrap-switch/static/js/bootstrap-switch.js')}}"></script>
-        <script src="{{url('assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js')}}"></script> 
+        <script src="{{url('assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js')}}"></script>
         <script src="{{url('assets/bootstrap-wysihtml5/bootstrap-wysihtml5.js')}}"></script>
-        <script src="{{url('assets/ckeditor/ckeditor.js')}}"></script> 
+        <script src="{{url('assets/ckeditor/ckeditor.js')}}"></script>
         <!--flaty scripts-->
         <script src="{{url('js/flaty.js')}}"></script>
         <script src="{{url('js/flaty-demo-codes.js')}}"></script>
@@ -351,6 +366,6 @@
             }
         </script>
         @yield('customScript')
-    
+
     </body>
 </html>

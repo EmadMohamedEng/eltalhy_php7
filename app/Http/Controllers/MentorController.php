@@ -2,11 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Mentor;
 use Illuminate\Http\Request;
+use App\Http\Requests\MentorStoreRequest;
+use App\Http\Services\MentorStoreService;
+use App\Http\Requests\MentorUpdateRequest;
+use App\Http\Services\MentorUpdateService;
+use App\Http\Repositories\MentorRepository;
 
 class MentorController extends Controller
 {
+
+    protected $mentorRepository;
+    protected $mentorStoreService;
+    protected $mentorUpdateService;
+
+    public function __construct(
+      MentorRepository $mentorRepository,
+      MentorStoreService $mentorStoreService,
+      MentorUpdateService $mentorUpdateService
+    )
+    {
+      $this->mentorRepository = $mentorRepository;
+      $this->mentorStoreService = $mentorStoreService;
+      $this->mentorUpdateService = $mentorUpdateService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +34,9 @@ class MentorController extends Controller
      */
     public function index()
     {
-        //
+      $title = 'Mentors';
+      $mentors = $this->mentorRepository->all();
+      return view('mentor.index', compact('title', 'mentors'));
     }
 
     /**
@@ -24,7 +46,8 @@ class MentorController extends Controller
      */
     public function create()
     {
-        //
+      $title = 'Mentors';
+      return view('mentor.create', compact('title'));
     }
 
     /**
@@ -33,9 +56,10 @@ class MentorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MentorStoreRequest $request)
     {
-        //
+      $this->mentorStoreService->handle($request->validated());
+      return redirect('mentor')->with('success', 'Created!');
     }
 
     /**
@@ -44,9 +68,11 @@ class MentorController extends Controller
      * @param  \App\Mentor  $mentor
      * @return \Illuminate\Http\Response
      */
-    public function show(Mentor $mentor)
+    public function show($id)
     {
-        //
+      $title = 'Mentors';
+      $mentor = $this->mentorRepository->find($id);
+      return view('mentor.show', compact('title', 'mentor'));
     }
 
     /**
@@ -55,9 +81,11 @@ class MentorController extends Controller
      * @param  \App\Mentor  $mentor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Mentor $mentor)
+    public function edit($id)
     {
-        //
+      $title = 'Mentors';
+      $mentor = $this->mentorRepository->find($id);
+      return view('mentor.edit', compact('title', 'mentor'));
     }
 
     /**
@@ -67,9 +95,11 @@ class MentorController extends Controller
      * @param  \App\Mentor  $mentor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mentor $mentor)
+    public function update(MentorUpdateRequest $request, $id)
     {
-        //
+      $mentor = $this->mentorRepository->find($id);
+      $this->mentorUpdateService->handle($request->validated(), $mentor);
+      return redirect('mentor')->with('success', 'Updated!');
     }
 
     /**
@@ -78,8 +108,9 @@ class MentorController extends Controller
      * @param  \App\Mentor  $mentor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mentor $mentor)
+    public function destroy($id)
     {
-        //
+      $mentor = $this->mentorRepository->destroy($id);
+      return back()->with(['success' => 'Deleted Successfully']);
     }
 }

@@ -44,4 +44,4 @@
    $('a[href="{{ url('/all_books')}}"]').parent().addClass('active');
 </script>
 @stop
-@stop 
+@stop
