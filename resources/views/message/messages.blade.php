@@ -40,7 +40,7 @@
                 </div>
             </div>
         @endforeach
-                       
+
         </div>
         <div class="row">
             <div class="pages_numbers">
@@ -54,4 +54,4 @@
    $('a[href="{{ url('/messages')}}"]').parent().addClass('active');
 </script>
 @stop
-@stop 
+@stop

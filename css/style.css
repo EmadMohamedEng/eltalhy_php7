@@ -15,12 +15,14 @@
 
 /* FrameWork
 ------------------------------*/
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   font-family: "Changa", sans-serif;
   color: #ECC671;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
 }
 
 ::-moz-selection {
@@ -136,7 +138,7 @@ section h3 {
 }
 .same_posts .arrows {
   font-size: 22px;
-  color: #4e4e4e;
+  color: #fff;
 }
 .same_posts .same_right a {
   float: left;
@@ -160,7 +162,7 @@ section h3 {
   display: block;
   line-height: 40px;
   border-radius: 50%;
-  border: 1px solid #111;
+  border: 1px solid #ECC671;
   transition: 0.8s;
 }
 .share-post li a:hover {
@@ -173,7 +175,6 @@ section h3 {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 80%;
-  min-height: 650px;
 }
 
 /* edit bootstrap
@@ -679,6 +680,7 @@ nav .navbar-brand img {
 /* footer Styles
 ------------------------------*/
 footer {
+  background-image: url(http://localhost/eltalhy_php7/img/bg_footer.jpg);
   background-size: cover;
   background-position: 50% 18%;
 }
@@ -850,6 +852,10 @@ footer .copy-right a:hover {
   font-size: 17px;
   border-radius: 0.75rem;
 }
+.contact_page input:focus {
+  border-color: #ECC671;
+  box-shadow: inset 0 1px 1px #111, 0 0 8px #111;
+}
 .contact_page textarea {
   margin: 15px;
   width: calc(100% - 30px);
@@ -858,6 +864,10 @@ footer .copy-right a:hover {
   color: #000;
   font-size: 17px;
   border-radius: 0.75rem;
+}
+.contact_page textarea:focus {
+  border-color: #ECC671;
+  box-shadow: inset 0 1px 1px #111, 0 0 8px #111;
 }
 .contact_page button {
   background: #111;
@@ -915,6 +925,8 @@ footer .copy-right a:hover {
   position: absolute;
   top: 20px;
   right: 56px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 .messages_pages .date {
   position: absolute;
@@ -925,6 +937,18 @@ footer .copy-right a:hover {
   z-index: -1;
   color: #fff;
   box-shadow: 0 0 5px 1px #111;
+}
+
+.single-book-page .pdf_download object p {
+  font-size: 2rem !important;
+  text-align: center;
+  background: #FFF;
+  border: 2px solid #FFF;
+  width: 55%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  padding: 3px;
+  border-radius: 0.75rem;
 }
 
 /* Responsive Styles
@@ -1053,6 +1077,15 @@ footer .copy-right a:hover {
 
   .contact_page input {
     width: calc(100% - 30px) !important;
+    font-size: 14px;
+  }
+
+  .contact_page textarea {
+    font-size: 14px;
+  }
+
+  .phone_number h3 {
+    font-size: 16px;
   }
 
   .messages_pages .profile-img {
@@ -1085,6 +1118,7 @@ footer .copy-right a:hover {
 
   .navbar .navbar-header .navbar-toggle {
     top: 11px;
+    margin-left: 0;
   }
 
   .social_icon {
@@ -1112,14 +1146,20 @@ footer .copy-right a:hover {
   }
 
   .single-book-page .pdf_download object p {
-    font-size: 1.5rem !important;
+    font-size: 1.75rem !important;
     text-align: center;
+  }
+
+  .contact_page h2 {
+    font-size: 16px;
+    margin-bottom: 0;
   }
 }
 /* Extra Small Devices, Phones */
 @media (min-width: 321px) and (max-width: 767px) {
   .navbar-header .navbar-toggle {
     top: 13px;
+    margin-left: 0;
   }
 
   .hero-slider .slide_center {
@@ -1153,7 +1193,12 @@ footer .copy-right a:hover {
   }
 
   .clear_sec .bg-opacity {
-    height: 130px;
+    height: 130px !important;
+    padding: 0 !important;
+  }
+
+  .sound_single .item {
+    margin-top: 12%;
   }
 
   .about_sec {
@@ -1286,9 +1331,35 @@ footer .copy-right a:hover {
     width: 90% !important;
   }
 
-  .single-book-page .pdf_download object p {
-    font-size: 1.5rem !important;
-    text-align: center;
+  .messages_pages .profile-img {
+    right: 9%;
+  }
+
+  .messages_pages .date {
+    right: 1%;
+  }
+
+  .messages_pages .thumbnail {
+    margin-right: 23%;
+    width: 75%;
+  }
+
+  .in_pages {
+    margin-top: 0;
+  }
+
+  .contact_page h2 {
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+
+  .contact_page input,
+.contact_page textarea {
+    font-size: 12px;
+  }
+
+  .phone_number h3 {
+    font-size: 16px;
   }
 }
 /* Small Devices, Tablets */
