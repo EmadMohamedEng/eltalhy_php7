@@ -1335,6 +1335,14 @@ footer {
     font-size: 16px;
     margin-bottom: 0;
   }
+
+  .about-page .info .panel-group .panel-collapse .panel-body .teachers .thumbnail .caption {
+    height: unset;
+  }
+
+  .about-page .info .panel-group .panel-collapse .panel-body .teachers .thumbnail .caption h3 {
+    font-size: 14px;
+  }
 }
 
 /* Extra Small Devices, Phones */
@@ -1559,6 +1567,14 @@ footer {
   }
 
   .phone_number h3 {
+    font-size: 16px;
+  }
+
+  .about-page .info .panel-group .panel-collapse .panel-body .teachers .thumbnail .caption {
+    height: unset;
+  }
+
+  .about-page .info .panel-group .panel-collapse .panel-body .teachers .thumbnail .caption h3 {
     font-size: 16px;
   }
 }

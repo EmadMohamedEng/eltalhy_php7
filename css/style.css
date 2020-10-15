@@ -1154,6 +1154,14 @@ footer .copy-right a:hover {
     font-size: 16px;
     margin-bottom: 0;
   }
+
+  .about-page .info .panel-group .panel-collapse .panel-body .teachers .thumbnail .caption {
+    height: unset;
+  }
+
+  .about-page .info .panel-group .panel-collapse .panel-body .teachers .thumbnail .caption h3 {
+    font-size: 14px;
+  }
 }
 /* Extra Small Devices, Phones */
 @media (min-width: 321px) and (max-width: 767px) {
@@ -1359,6 +1367,14 @@ footer .copy-right a:hover {
   }
 
   .phone_number h3 {
+    font-size: 16px;
+  }
+
+  .about-page .info .panel-group .panel-collapse .panel-body .teachers .thumbnail .caption {
+    height: unset;
+  }
+
+  .about-page .info .panel-group .panel-collapse .panel-body .teachers .thumbnail .caption h3 {
     font-size: 16px;
   }
 }

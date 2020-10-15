@@ -29,7 +29,9 @@
       <div class="col-sm-6 col-md-6">
         <div class="thumbnail">
           <?php $photo = App\BookPhoto::find($book->end_cover); ?>
-          <img src="{{url($photo->photo_path)}}" alt="...">
+          <a href="{{ url('/book_single/'.$book->id)}}">
+            <img src="{{url($photo->photo_path)}}" alt="...">
+          </a>
           <div class="caption">
             <h3><a href="{{ url('/book_single/'.$book->id)}}">أساس علوم الدين</a></h3>
           </div>
