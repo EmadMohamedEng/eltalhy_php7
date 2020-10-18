@@ -15,6 +15,7 @@
         <link href="{{ url('css/animate.css')}}" rel="stylesheet">
         <link href="{{ url('css/hover-min.css')}}" rel="stylesheet">
         <link href="{{ url('css/lightGallery.css')}}" rel="stylesheet">
+        @yield('style')
         <link href="{{ url('css/style.css')}}" rel="stylesheet">
         <!--[if lt IE 9]> <script src="js/html5shiv.min.js"></script> <![endif]-->
     </head>
@@ -78,10 +79,14 @@
 
         <!-- scripts -->
         <script src="{{ url('js/jquery-3.1.0.min.js')}}"></script>
+
         <script src="{{ url('js/bootstrap.min.js')}}"></script>
         <script src="{{ url('js/slick.min.js')}}"></script>
         <script src="{{ url('js/lightGallery.js')}}"></script>
+
         <script src="{{ url('js/wow.min.js')}}"></script>
         <script src="{{ url('js/plugins.js')}}"></script>
+        @yield('script')
+
     </body>
 </html>
