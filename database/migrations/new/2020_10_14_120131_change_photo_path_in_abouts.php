@@ -14,7 +14,7 @@ class ChangePhotoPathInAbouts extends Migration
     public function up()
     {
         Schema::table('abouts', function (Blueprint $table) {
-			$table->string('photo_path')->nullable()->change();
+			// $table->string('photo_path')->nullable()->change();
         });
     }
 

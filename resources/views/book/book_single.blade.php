@@ -35,12 +35,19 @@
             }
         </style>
         <!-- js for books -->
-        <script type="text/javascript" src="{{url('books/js/jquery.min.1.7.js')}}"></script>
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="{{url('books/js/jquery-ui-1.8.20.custom.min.js')}}"></script>
         <script type="text/javascript" src="{{url('books/js/jquery.mousewheel.min.js')}}"></script>
         <script type="text/javascript" src="{{url('books/js/modernizr.2.5.3.min.js')}}"></script>
         <script type="text/javascript" src="{{url('books/js/hash.js')}}"></script>
     </head>
+    <style>
+    @media (max-width: 767px) and (min-width: 321px){
+      .in_pages {
+    margin-top: 81px;
+}
+}
+    </style>
     <body>
         <nav class="navbar navbar-fixed-top">
           <div class="container">
@@ -122,9 +129,9 @@
                         <div id="slider"></div>
                     </div>-->
                 </div>
-                <div class="hidden-md hidden-lg pdf_download">
+                <div class=" pdf_download">
                     <object data="{{str_replace('\\','/',($book->photo_path))}}" type="application/pdf" width="100%" height="100%">
-                        <p style="font-size: 2rem;">Alternative text - include a link <a href="{{url('book/'.$book->id.'/download')}}">to the PDF!</a></p>
+                        <p style="font-size: 2rem;">تحميل الكتاب<i class="fa fa-book" aria-hidden="true"></i> <a href="{{url('book/'.$book->id.'/download')}}"></a></p>
                     </object>
                 </div>
             </div>
@@ -649,9 +656,11 @@
         <!--//Footer Section -->
 
         <!-- scripts -->
-        <!--<script src="js/jquery-3.1.0.min.js"></script>-->
+        <!-- <script src="js/jquery-3.1.0.min.js"></script> -->
+        <!-- <script src="{{url('js/jquery-3.1.0.min.js')}}"></script> -->
         <script src="{{url('js/bootstrap.min.js')}}"></script>
         <script src="{{url('js/wow.min.js')}}"></script>
         <script src="{{url('js/plugins.js')}}"></script>
     </body>
 </html>
+

@@ -37,8 +37,8 @@
                     </div>
                 </div>
             </div>
-             
-                       
+
+
         </div>
         {!! $messages->render() !!}
        {{--  <div class="row">
