@@ -27,6 +27,13 @@
             <li class="active">Book</li>
         </ul>
     </div>
+
+    @if ( Session::has('success') )
+        <div class="alert alert-success alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Success!</strong> {{ Session::get('success')}}
+        </div>
+    @endif
      <!-- BEGIN Main Content -->
    <div class="row">
         <div class="col-md-12">
@@ -128,12 +135,12 @@
                 .always(function() {
                     console.log("complete");
                 });
-                
+
 
             },
         });
         $( ".gallery" ).sortable({
-            cancel: '.unsorted' 
+            cancel: '.unsorted'
         });
 
     </script>

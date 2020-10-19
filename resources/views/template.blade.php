@@ -213,7 +213,7 @@
                 </ul>
                 <!-- END Submenu -->
             </li>
-            
+
             <li id="aggregator">
                 <a href="#" class="dropdown-toggle">
                     <i class="glyphicon glyphicon-user"></i>
@@ -310,7 +310,7 @@
                 </ul>
                 <!-- END Submenu -->
             </li>
-            
+
         </ul>
         <!-- END Navlist -->
 

@@ -66,7 +66,11 @@
                                 {{-- <td>{{$book->created_at}}</td> --}}
                                 <td class="visible-md visible-lg">
                                     <div class="btn-group">
+
+                                    <a class="btn btn-sm btn-success show-tooltip" title="" href="{{url('book/'.$book->id.'/addimage')}}" data-original-title="Add Image"><i class="fa fa-plus"></i></a>
+
                                         <a class="btn btn-sm btn-danger show-tooltip" title="" onclick = 'return ConfirmDelete()' href="{{url('book/'.$book->id.'/delete')}}" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+
                                     </div>
                                 </td>
                             </tr>

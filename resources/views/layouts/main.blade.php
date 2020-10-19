@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>{{$title}}</title>
+        <title>Admin Panel</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -226,6 +226,22 @@
                         <!-- END Submenu -->
                     </li>
 
+                    <li id="file_manager">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="fa fa-file"></i>
+                            <span>File Manager</span>
+                            <b class="arrow fa fa-angle-right"></b>
+                        </a>
+
+                        <!-- BEGIN Submenu -->
+                        <ul class="submenu">
+                            <!--<li id="elfinder"><a href="{{url('file_manager')}}">UI File Manager</a></li>-->
+                            <li id="elfinder"><a href="{{url('file_manager')}}">UI File Manager</a></li>
+                            <!-- <li id="uploader"><a href="{{url('upload_items')}}">file uploader</a></li> -->
+                        </ul>
+                        <!-- END Submenu -->
+                    </li>
+
                     <li id="slider">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-bars"></i>
@@ -331,7 +347,7 @@
         <script src="{{url('assets/flot/jquery.flot.pie.js')}}"></script>
         <script src="{{url('assets/flot/jquery.flot.stack.js')}}"></script>
         <script src="{{url('assets/flot/jquery.flot.crosshair.js')}}"></script>
-        <script src="{{url('assets/flot/jquery.flot.tooltip.min.js')}}"></script>
+        {{--<script src="{{url('assets/flot/jquery.flot.tooltip.min.js')}}"></script>--}}
         <script src="{{url('assets/sparkline/jquery.sparkline.min.js')}}"></script>
 
         <script src="{{url('assets/prettyPhoto/js/jquery.prettyPhoto.js')}}"></script>

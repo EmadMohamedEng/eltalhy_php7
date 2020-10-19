@@ -19,7 +19,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $settings_ = Setting::all();
         $settings = array();
         $book = Book::orderBy('created_at', 'desc')->first();
@@ -96,5 +96,14 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function JICindex()
+    {
+        return view('JIC.index');
+    }
+    public function elFinderlEfinder()
+    {
+        return view('elFinder.elfinder');
     }
 }
