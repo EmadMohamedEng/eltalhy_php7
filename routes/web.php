@@ -21,6 +21,10 @@ Route::auth();
 // Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 
+Route::get('baher',function(){
+  return view('book.test') ;
+});
+
 Route::group(['middleware'=> 'auth'], function() {
     Route::get('/dashboard', 'DashboardController@index');
 });
@@ -208,3 +212,7 @@ Route::group(['middleware'=> 'auth'], function() {
     Route::patch('user/{id}/update', 'UserController@update');
     Route::post('user/deleteSelected', 'UserController@deleteSelected');
 });
+
+
+
+

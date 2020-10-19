@@ -11,19 +11,30 @@
  */
 .booklet {
   width: 800px;
-  height: 490px !important;
+  height: 600px;
   position: relative;
   margin: 0 auto 10px;
+  margin-top: 8% !important;
   overflow: visible !important;
 }
 
 .booklet .b-page {
   left: 0;
-  top: 25% !important;
+  top: 0;
   position: absolute;
   overflow: hidden;
   padding: 0;
   outline: 1px solid rgba(0, 0, 0, 0);
+}
+
+#mybook .mybook_img img {
+  width: 100%;
+  height: 655px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
 }
 
 .booklet .b-pN {}
@@ -45,11 +56,13 @@
 }
 
 .booklet .b-wrap-left {
-  background: #fff;
+  background: #766141;
+  border-radius: 10px;
 }
 
 .booklet .b-wrap-right {
-  background: #efefef;
+  background: #766141;
+  border-radius: 10px;
 }
 
 .booklet .b-pN .b-wrap,
@@ -85,6 +98,7 @@
 
 /* Page Numbers */
 .booklet .b-counter {
+  border-radius: 5px;
   bottom: 10px;
   position: absolute;
   display: block;
@@ -127,7 +141,7 @@
   background-position: 0 0;
 }
 
-.booklet .b-p0 {
+/* .booklet .b-p0 {
   background-image: url("../../img/shadow.png");
   background-repeat: repeat-y;
   background-position: 100% 10px;
@@ -137,15 +151,15 @@
   background-image: url("../../img/shadow.png");
   background-repeat: repeat-y;
   background-position: 0 10px;
-}
+} */
 
 /* Overlay Controls */
 .booklet .b-grab {
-  /* cursor: url("images/openhand.cur"), default; */
+  cursor: url("images/openhand.cur"), default;
 }
 
 .booklet .b-grabbing {
-  /* cursor: url("images/closedhand.cur"), default; */
+  cursor: url("images/closedhand.cur"), default;
 }
 
 /* Overlay Controls */
@@ -218,11 +232,11 @@
 }
 
 .booklet .b-arrow-next div {
-  background: url("../../img/arrow-next.png") no-repeat left top;
+  background: url("images/arrow-next.png") no-repeat left top;
 }
 
 .booklet .b-arrow-prev div {
-  background: url("../../img/arrow-prev.png") no-repeat left top;
+  background: url("images/arrow-prev.png") no-repeat left top;
 }
 
 /* @z-index fix (needed for older IE browsers)
@@ -361,4 +375,53 @@ body {
 
 .b-selector a:hover {
   color: #fff;
+}
+
+.pdf_download {
+  text-align: center;
+  font-size: 1.75rem;
+}
+
+.pdf_download img {
+  width: 70%;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.pdf_download a {
+  width: 60%;
+  display: block;
+  margin: 2% auto;
+  padding: 8px 0;
+  background: #766141;
+  border-top-left-radius: 70px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 70px;
+  border-bottom-left-radius: 10px;
+}
+
+@media (min-width: 320px) and (max-width: 1025px) {
+  #mybook {
+    display: none;
+  }
+
+  .navbar-fixed-bottom,
+  .navbar-fixed-top {
+    position: unset;
+  }
+
+  /* footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  } */
+}
+
+@media (min-width: 1025px) {
+  .pdf_download {
+    display: none;
+  }
 }
