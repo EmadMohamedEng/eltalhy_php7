@@ -174,7 +174,9 @@ class BookController extends Controller
     {
         $book = Book::findOrfail($book_id);
         $photos = $book->photos()->orderBy('order', 'asc')->get();
-        return view('book.book_single', compact('book', 'photos'));
+        $photos_order = BookPhoto::where('book_id',$book_id)->latest('id')->first();
+        // dd($photos_order);
+        return view('book.book_single', compact('book', 'photos','photos_order'));
     }
 
     public function books()
@@ -185,7 +187,7 @@ class BookController extends Controller
             $settings[$setting->key] = $setting->value;
         }
         $books = Book::all();
-        
+
         return view('book.books', compact('books', 'settings'));
     }
     /**

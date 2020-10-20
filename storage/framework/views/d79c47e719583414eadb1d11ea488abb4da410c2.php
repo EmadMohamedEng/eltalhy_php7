@@ -267,7 +267,7 @@
                     autoCenter: true,
                     gradients: true,
                     duration: 1000,
-                    pages: 74,
+                    pages: <?php echo e($photos_order->order -1); ?>,
                     when: {
                         turning: function(e, page, view) {
 
