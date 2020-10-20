@@ -82,7 +82,12 @@ class BookController extends Controller
 
         $book->title = $request->title;
         $book->description = $request->content;
-        $book->save();
+
+        if ($book->save()) {
+            if (!file_exists('uploads/book/' . $book->id . '/')) {
+                mkdir('uploads/book/' . $book->id . '/', 0777, true);
+            }
+        }
         // if ($request->hasFile('fileToUpload')) {
         //     $j = 2;
         //     $end = count($request->file('fileToUpload'));
@@ -126,7 +131,8 @@ class BookController extends Controller
         }
 
         $book->save();
-        return redirect('book');
+        $request->session()->flash('success', 'Please upload book photos on this path  uploads/book/' . $book->id);
+        return redirect('file_manager');
     }
 
     /**
@@ -179,6 +185,7 @@ class BookController extends Controller
             $settings[$setting->key] = $setting->value;
         }
         $books = Book::all();
+        
         return view('book.books', compact('books', 'settings'));
     }
     /**
@@ -246,17 +253,18 @@ class BookController extends Controller
         }
 
         Book::find($id)->photos()->delete();
-        // $book_images = BookPhoto::where('book_id', $id)->get();
-        // foreach ($book_images as $book_image) {
-        //     $book_image->delete();
-        // }
-        foreach ($books as $key => $book) {
+        foreach ($books as $order_book => $book) {
             $add_book_images = new BookPhoto();
             $add_book_images->photo_path = 'uploads/book/' . $id . '/' . $book;
             $add_book_images->book_id = $id;
-            $add_book_images->order = $key + 1;
+            $add_book_images->order = $order_book + 1;
             $add_book_images->save();
         }
+        $the_book = Book::find($id);
+        $the_book->start_cover = optional(BookPhoto::where('book_id', $id)->first())->id;
+        $the_book->end_cover = optional(BookPhoto::where('book_id', $id)->latest('id')->first())->id;
+        $the_book->save();
+
         $request->session()->flash('success', 'Book Photo Created Successfully');
         return redirect('book/' . $id . '/show');
 

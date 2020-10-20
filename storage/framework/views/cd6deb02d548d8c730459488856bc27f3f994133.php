@@ -31,7 +31,10 @@
             <img src="<?php echo e(url($photo->photo_path)); ?>" alt="...">
           </a>
           <div class="caption">
-            <h3><a href="<?php echo e(url('/book_single/'.$book->id)); ?>">أساس علوم الدين</a></h3>
+            <h3><a href="<?php echo e(url('/book_single/'.$book->id)); ?>">
+          <?php echo e($book->title); ?>
+
+          </a></h3>
           </div>
         </div>
       </div>
