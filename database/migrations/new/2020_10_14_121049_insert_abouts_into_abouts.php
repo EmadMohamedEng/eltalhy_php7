@@ -13,6 +13,7 @@ class InsertAboutsIntoAbouts extends Migration
      */
     public function up()
     {
+      DB::statement('ALTER TABLE `abouts` CHANGE `photo_path` `photo_path` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL;');
         DB::table('abouts')->insert(
             [
                 [

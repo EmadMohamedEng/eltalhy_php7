@@ -13,6 +13,11 @@
 <style>
 body {
     overflow-y: scroll !important;
+    background-image: unset !important;
+
+}
+.social_icon {
+  display: none;
 }
 
 .pdf_download {
@@ -40,7 +45,9 @@ body {
     border-bottom-right-radius: 70px;
     border-bottom-left-radius: 10px;
 }
-
+#canvas{
+  margin: 168px auto !important;
+}
 @media (min-width: 320px) and (max-width: 1025px) {
     #canvas {
         display: none;
@@ -93,7 +100,7 @@ body {
 
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('script'); ?>
+<?php $__env->startSection('scriptActive'); ?>
 <script src="<?php echo e(url('book_plugin/docs/js/jquery.min.1.7.js')); ?>"></script>
 <script src="<?php echo e(url('book_plugin/docs/js/jquery-ui-1.8.20.custom.min.js')); ?>"></script>
 <script src="<?php echo e(url('book_plugin/docs/js/jquery.mousewheel.min.js')); ?>"></script>
@@ -374,4 +381,4 @@ yepnope({
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\eltalhy_php7\resources\views/book/book_single.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\eltalhy_php7\resources\views/book/book_single.blade.php ENDPATH**/ ?>

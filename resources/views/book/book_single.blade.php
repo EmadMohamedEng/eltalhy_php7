@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 @section('style')
 <!-- <link href="{{ url('js/book/jquery.booklet.latest.css')}}" rel="stylesheet"> -->
 @stop
@@ -14,6 +14,11 @@
 <style>
 body {
     overflow-y: scroll !important;
+    background-image: unset !important;
+
+}
+.social_icon {
+  display: none;
 }
 
 .pdf_download {
@@ -41,7 +46,9 @@ body {
     border-bottom-right-radius: 70px;
     border-bottom-left-radius: 10px;
 }
-
+#canvas{
+  margin: 168px auto !important;
+}
 @media (min-width: 320px) and (max-width: 1025px) {
     #canvas {
         display: none;
@@ -94,7 +101,7 @@ body {
 
 @stop
 
-@section('script')
+@section('scriptActive')
 <script src="{{ url('book_plugin/docs/js/jquery.min.1.7.js')}}"></script>
 <script src="{{ url('book_plugin/docs/js/jquery-ui-1.8.20.custom.min.js')}}"></script>
 <script src="{{ url('book_plugin/docs/js/jquery.mousewheel.min.js')}}"></script>

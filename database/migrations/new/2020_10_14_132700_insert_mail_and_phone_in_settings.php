@@ -11,21 +11,21 @@ class InsertMailAndPhoneInSettings extends Migration
      *
      * @return void
      */
-    // public function up()
-    // {
-    //     DB::table('settings')->insert(
-    //         [
-    //             [
-    //                 'key' => 'phone',
-    //                 'value' => '0155851020'
-    //             ],
-    //             [
-    //                 'key' => 'Email',
-    //                 'value' => 'emad@ivas.com.eg'
-    //             ]
-    //         ]
-    //     );
-    // }
+    public function up()
+    {
+        DB::table('settings')->insert(
+            [
+                [
+                    'key' => 'phone',
+                    'value' => '0155851020'
+                ],
+                [
+                    'key' => 'Email',
+                    'value' => 'emad@ivas.com.eg'
+                ]
+            ]
+        );
+    }
 
     /**
      * Reverse the migrations.

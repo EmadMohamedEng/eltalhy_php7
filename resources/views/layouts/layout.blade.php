@@ -30,12 +30,12 @@
     <body style="background-image: url({{url('img/black-pattern.png')}})">
         <div class="social_icon">
         <ul class="list-unstyled">
-                    <li><a class="fb" target="_blank" href="{{$settings['facebook_link']}}"><i class="fa fa-facebook"></i></a></li>
-                    <li><a class="tw" target="_blank" href="{{$settings['twitter_link']}}"><i class="fa fa-twitter"></i></a></li>
-                    <li><a class="gp" target="_blank" href="{{$settings['youtube_link']}}"><i class="fa fa-youtube"></i></a></li>
-                    <li><a class="ns" target="_blank" href="{{$settings['instagram_link']}}"><i class="fa fa-instagram"></i></a></li>
-                    <li><a class="tl" target="_blank" href="{{$settings['telegram_link']}}"><i class="fa fa-telegram"></i></a></li>
-                    <li><a class="sc" target="_blank" href="{{$settings['soundcloud_link']}}"><i class="fa fa-soundcloud"></i></a></li>
+                    <li><a class="fb" target="_blank" href="{!! DB::table('settings')->where('key','like','%facebook_link%')->first()->value !!}"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="tw" target="_blank" href="{!! DB::table('settings')->where('key','like','%twitter_link%')->first()->value !!}"><i class="fa fa-twitter"></i></a></li>
+                    <li><a class="gp" target="_blank" href="{!! DB::table('settings')->where('key','like','%youtube_link%')->first()->value !!}"><i class="fa fa-youtube"></i></a></li>
+                    <li><a class="ns" target="_blank" href="{!! DB::table('settings')->where('key','like','%instagram_link%')->first()->value !!}"><i class="fa fa-instagram"></i></a></li>
+                    <li><a class="tl" target="_blank" href="{!! DB::table('settings')->where('key','like','%telegram_link%')->first()->value !!}"><i class="fa fa-telegram"></i></a></li>
+                    <li><a class="sc" target="_blank" href="{!! DB::table('settings')->where('key','like','%soundcloud_link%')->first()->value !!}"><i class="fa fa-soundcloud"></i></a></li>
         </ul>
       </div>
         <nav class="navbar navbar-fixed-top">
@@ -87,12 +87,13 @@
         <footer style="background-image: url({{url('img/bg_footer.jpg')}})">
             <div class="container">
                 <ul class="list-unstyled">
-                    <li><a class="sc" target="_blank" href="{{$settings['soundcloud_link']}}"><i class="fa fa-soundcloud"></i></a></li>
-                    <li><a class="tl" target="_blank" href="{{$settings['telegram_link']}}"><i class="fa fa-telegram"></i></a></li>
-                    <li><a class="ns" target="_blank" href="{{$settings['instagram_link']}}"><i class="fa fa-instagram"></i></a></li>
-                    <li><a class="gp" target="_blank" href="{{$settings['youtube_link']}}"><i class="fa fa-youtube"></i></a></li>
-                    <li><a class="tw" target="_blank" href="{{$settings['twitter_link']}}"><i class="fa fa-twitter"></i></a></li>
-                    <li><a class="fb" target="_blank" href="{{$settings['facebook_link']}}"><i class="fa fa-facebook"></i></a></li>
+
+                    <li><a class="sc" target="_blank" href="{!! DB::table('settings')->where('key','like','%soundcloud_link%')->first()->value !!}"><i class="fa fa-soundcloud"></i></a></li>
+                    <li><a class="tl" target="_blank" href="{!! DB::table('settings')->where('key','like','%telegram_link%')->first()->value !!}"><i class="fa fa-telegram"></i></a></li>
+                    <li><a class="ns" target="_blank" href="{!! DB::table('settings')->where('key','like','%instagram_link%')->first()->value !!}"><i class="fa fa-instagram"></i></a></li>
+                    <li><a class="gp" target="_blank" href="{!! DB::table('settings')->where('key','like','%youtube_link%')->first()->value !!}"><i class="fa fa-youtube"></i></a></li>
+                    <li><a class="tw" target="_blank" href="{!! DB::table('settings')->where('key','like','%twitter_link%')->first()->value !!}"><i class="fa fa-twitter"></i></a></li>
+                    <li><a class="fb" target="_blank" href="{!! DB::table('settings')->where('key','like','%facebook_link%')->first()->value !!}"><i class="fa fa-facebook"></i></a></li>
                 </ul>
             </div>
             <div class="copy-right text-center">
