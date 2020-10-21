@@ -4,13 +4,68 @@
 @stop
 @section('content')
 
+<style>
+  body {
+    overflow-y: scroll !important;
+  }
+
+  .pdf_download {
+    text-align: center;
+    font-size: 1.75rem;
+  }
+
+  .pdf_download img {
+    width: 80%;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+
+  .pdf_download a {
+    width: 60%;
+    display: block;
+    margin: 2% auto;
+    padding: 8px 0;
+    background: #766141;
+    border-top-left-radius: 70px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 70px;
+    border-bottom-left-radius: 10px;
+  }
+
+  @media (min-width: 320px) and (max-width: 1025px) {
+    #canvas {
+      display: none;
+    }
+
+    .navbar-fixed-bottom,
+    .navbar-fixed-top {
+      position: unset;
+    }
+
+    /* footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  } */
+  }
+
+  @media (min-width: 1025px) {
+    .pdf_download {
+      display: none;
+    }
+  }
+</style>
+
 <div id="canvas">
   <div id="book-zoom">
     <div class="sample-docs">
-      <div ignore="1" class="tabs">
+      <!-- <div ignore="1" class="tabs">
         <div class="left"> </div>
         <div class="right"> </div>
-      </div>
+      </div> -->
       <div class="hard"></div>
       <div class="hard"></div>
       <div class="hard p29"></div>
@@ -22,6 +77,11 @@
   <div id="slider-bar" class="turnjs-slider">
     <div id="slider"></div>
   </div>
+</div>
+
+<div class="pdf_download">
+  <img src="../img/book_1.jpg" alt="">
+  <a href="{{url('book/'.$book->id.'/download')}}">تحميل الكتاب <i class="fa fa-book" aria-hidden="true"></i></a>
 </div>
 
 @stop
