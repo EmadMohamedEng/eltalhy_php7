@@ -174,6 +174,7 @@ Route::get('/video/{slug}', 'VideoController@show_by_slug');
 Route::get('/aboutus', 'AboutController@about');
 
 Route::get('/book_single/{book_id}', 'BookController@front_book_view');
+Route::get('/book_single_old/{book_id}', 'BookController@front_book_view_old');
 Route::get('/all_books', 'BookController@books');
 Route::get('book/{id}/download', 'BookController@download');
 Route::get('book/{book_id}/loadpage/{page_order}', 'BookController@loadpage');
@@ -222,3 +223,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('user/{id}/update', 'UserController@update');
     Route::post('user/deleteSelected', 'UserController@deleteSelected');
 });
+
+
+
+

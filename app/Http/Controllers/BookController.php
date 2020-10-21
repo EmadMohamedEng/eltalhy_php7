@@ -179,6 +179,15 @@ class BookController extends Controller
         return view('book.book_single', compact('book', 'photos','photos_order'));
     }
 
+    public function front_book_view_old($book_id)
+    {
+        $book = Book::findOrfail($book_id);
+        $photos = $book->photos()->orderBy('order', 'asc')->get();
+        $photos_order = BookPhoto::where('book_id',$book_id)->latest('id')->first();
+        // dd($photos_order);
+        return view('book.book_single_old', compact('book', 'photos','photos_order'));
+    }
+
     public function books()
     {
         $settings_ = Setting::all();
