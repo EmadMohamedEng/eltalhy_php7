@@ -2,60 +2,85 @@
 <!-- <link href="<?php echo e(url('js/book/jquery.booklet.latest.css')); ?>" rel="stylesheet"> -->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-<?php $cover = App\BookPhoto::find($book->start_cover);?>
+<?php $cover = App\BookPhoto::find($book->start_cover); ?>
 <style>
-.sample-docs .hard {
-  background-image:url('<?php echo e(url($cover->photo_path)); ?>') !important;
+  .sample-docs .hard {
+    background-image:url('<?php echo e(url($cover->photo_path)); ?>') !important;
 
-}
-
+  }
 </style>
 <style>
-body {
+  body {
     overflow-y: scroll !important;
     background-image: unset !important;
 
-}
-.social_icon {
-  display: none;
-}
+  }
 
-.pdf_download {
+  .social_icon {
+    display: none;
+  }
+
+  .pdf_download {
     text-align: center;
     font-size: 1.75rem;
-}
+  }
 
-.pdf_download img {
+  .pdf_download img {
     width: 80%;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-}
 
-.pdf_download a {
+    box-shadow: 12px 14px 13px 0px #766141;
+  }
+
+  .pdf_download .pdf_link {
     width: 60%;
     display: block;
-    margin: 2% auto;
+    margin: 8% auto;
     padding: 8px 0;
     background: #766141;
+    border: 3px solid #ECC671;
     border-top-left-radius: 70px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 70px;
     border-bottom-left-radius: 10px;
-}
-#canvas{
-  margin: 168px auto !important;
-}
-@media (min-width: 320px) and (max-width: 1025px) {
+
+
+    -webkit-animation-name: hvr-bob-float, hvr-bob;
+    animation-name: hvr-bob-float, hvr-bob;
+    -webkit-animation-duration: .3s, 1.5s;
+    animation-duration: .3s, 1.5s;
+    -webkit-animation-delay: 0s, .3s;
+    animation-delay: 0s, .3s;
+    -webkit-animation-timing-function: ease-out, ease-in-out;
+    animation-timing-function: ease-out, ease-in-out;
+    -webkit-animation-iteration-count: 1, infinite;
+    animation-iteration-count: 1, infinite;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-direction: normal, alternate;
+    animation-direction: normal, alternate;
+  }
+
+  .pdf_download .pdf_link i {
+    font-size: 2.5rem;
+  }
+
+  #canvas {
+    margin: 130px auto !important;
+  }
+
+  @media (min-width: 320px) and (max-width: 1025px) {
     #canvas {
-        display: none;
+      display: none;
     }
 
     .navbar-fixed-bottom,
     .navbar-fixed-top {
-        position: unset;
+      position: unset;
     }
 
     /* footer {
@@ -63,39 +88,48 @@ body {
     bottom: 0;
     width: 100%;
   } */
-}
+  }
 
-@media (min-width: 1025px) {
-    .pdf_download {
-        display: none;
+  @media (min-width: 1025px) {
+    .pdf_download img {
+      display: none;
     }
-}
+
+    .pdf_download .pdf_link {
+      width: 25%;
+      margin: 0 auto;
+      padding: 10px 0;
+    }
+  }
 </style>
 
 
 <div id="canvas">
-    <div id="book-zoom">
-        <div class="sample-docs">
-            <!-- <div ignore="1" class="tabs">
+  <div id="book-zoom">
+    <div class="sample-docs">
+      <!-- <div ignore="1" class="tabs">
         <div class="left"> </div>
         <div class="right"> </div>
       </div> -->
-            <div class="hard"></div>
-            <div class="hard"></div>
-            <div class="hard p29"></div>
-            <div class="hard p30"></div>
-        </div>
+      <div class="hard"></div>
+      <div class="hard"></div>
+      <div class="hard p29"></div>
+      <div class="hard p30"></div>
     </div>
+  </div>
 
 
-    <div id="slider-bar" class="turnjs-slider">
-        <div id="slider"></div>
-    </div>
+  <div id="slider-bar" class="turnjs-slider">
+    <div id="slider"></div>
+  </div>
 </div>
 
 <div class="pdf_download">
+  <a href="<?php echo e(url('book/'.$book->id.'/download')); ?>">
     <img src="../img/book_1.jpg" alt="">
-    <a href="<?php echo e(url('book/'.$book->id.'/download')); ?>">تحميل الكتاب <i class="fa fa-book" aria-hidden="true"></i></a>
+  </a>
+
+  <a class="pdf_link" href="<?php echo e(url('book/'.$book->id.'/download')); ?>">تحميل الكتاب <i class="fa fa-book" aria-hidden="true"></i></a>
 </div>
 
 <?php $__env->stopSection(); ?>
@@ -106,6 +140,7 @@ body {
 <script src="<?php echo e(url('book_plugin/docs/js/jquery.mousewheel.min.js')); ?>"></script>
 <script src="<?php echo e(url('book_plugin/docs/js/modernizr.2.5.3.min.js')); ?>"></script>
 <script src="<?php echo e(url('book_plugin/docs/js/hash.js')); ?>"></script>
+
 
 <script type="text/javascript">
 function loadApp() {
@@ -347,7 +382,7 @@ function loadPage(page) {
         $.ajax({
         url: "<?php echo e(url('book/'.$book->id.'/loadpage')); ?>/" + page
     }).done(function(pageHtml) {
-        console.log(pageHtml);
+        // console.log(pageHtml);
         img.attr('src', '../' +pageHtml['path']);
     });
 }
@@ -378,7 +413,6 @@ yepnope({
     complete: loadApp
 });
 </script>
-
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\eltalhy_php7\resources\views/book/book_single.blade.php ENDPATH**/ ?>
