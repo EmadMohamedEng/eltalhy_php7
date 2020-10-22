@@ -122,12 +122,19 @@
                         data: $(this).serialize(),
                     })
                     .done(function(data) {
+                      if (data.success == undefined) {
+                        $('.text-success').html("تم تسجيل الاميل من قبل");
+                        $('.text-success').addClass("text-danger");
+                        $('#subscribeFrom input[name="contact_email"]').val('');
+                      }else{
                         console.log(data.success);
                         $('.text-success').html(data.success);
+                        $('.text-success').removeClass("text-danger");
                         $('#subscribeFrom input[name="contact_email"]').val('');
+                      }
                     })
-                    .fail(function() {
-                        console.log("error");
+                    .fail(function(data) {
+                        console.log("dara");
                     })
                 });
 

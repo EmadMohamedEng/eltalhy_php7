@@ -157,14 +157,14 @@
         </div>
             <ul id="lightGallery" class="gallery list-unstyled">
                 @foreach($photos as $photo)
-                    <li data-src="{{url($photo->photo_path)}}" > 
+                    <li data-src="{{url($photo->photo_path)}}" >
                         <a href="#">
                         <img src="{{url($photo->photo_path)}}" />
                         <p>عنوان يعبر عن الصورة</p>
-                        </a> 
+                        </a>
                     </li>
                 @endforeach
-            </ul>   
+            </ul>
     </div>
 </section>
 <!-- //photos section -->
@@ -191,7 +191,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-     
+
       <H1 style="text-align: center;">قريبا</H1>
       </div>
     </div>
