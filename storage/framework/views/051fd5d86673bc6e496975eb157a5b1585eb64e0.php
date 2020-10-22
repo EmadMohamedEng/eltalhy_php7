@@ -75,10 +75,14 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo e(url('auth/logout')); ?>">
-                                <i class="fa fa-sign-out"></i>
+                            <a href="<?php echo e(url('logout')); ?>" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                                <i class="fa fa-off"></i>
                                 Logout
                             </a>
+                            <form id="frm-logout" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                                <?php echo e(csrf_field()); ?>
+
+                            </form>
                         </li>
                     </ul>
                     <!-- BEGIN User Dropdown -->

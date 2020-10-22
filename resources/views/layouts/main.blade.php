@@ -74,10 +74,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{url('auth/logout')}}">
-                                <i class="fa fa-sign-out"></i>
+                            <a href="{{url('logout')}}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                                <i class="fa fa-off"></i>
                                 Logout
                             </a>
+                            <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                         </li>
                     </ul>
                     <!-- BEGIN User Dropdown -->
