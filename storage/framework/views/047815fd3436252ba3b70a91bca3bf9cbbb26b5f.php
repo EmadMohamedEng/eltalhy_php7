@@ -135,14 +135,14 @@
         </div>
             <ul id="lightGallery" class="gallery list-unstyled">
                 <?php $__currentLoopData = $photos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $photo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <li data-src="<?php echo e(url($photo->photo_path)); ?>" > 
+                    <li data-src="<?php echo e(url($photo->photo_path)); ?>" >
                         <a href="#">
                         <img src="<?php echo e(url($photo->photo_path)); ?>" />
                         <p>عنوان يعبر عن الصورة</p>
-                        </a> 
+                        </a>
                     </li>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </ul>   
+            </ul>
     </div>
 </section>
 <!-- //photos section -->
@@ -169,7 +169,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-     
+
       <H1 style="text-align: center;">قريبا</H1>
       </div>
     </div>
