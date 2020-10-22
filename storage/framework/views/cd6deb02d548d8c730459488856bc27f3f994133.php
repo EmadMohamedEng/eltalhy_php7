@@ -44,7 +44,7 @@
 </section>
 <?php $__env->startSection('scriptActive'); ?>
 <script type="text/javascript">
-  $('a[href="<?php echo e(url(' / all_books ')); ?>"]').parent().addClass('active');
+  $('a[href="<?php echo e(url('/all_books')); ?>"]').parent().addClass('active');
 </script>
 <?php $__env->stopSection(); ?>
 <?php $__env->stopSection(); ?>
