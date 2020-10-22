@@ -45,7 +45,7 @@
 </section>
 @section('scriptActive')
 <script type="text/javascript">
-  $('a[href="{{ url(' / all_books ')}}"]').parent().addClass('active');
+  $('a[href="{{ url('/all_books')}}"]').parent().addClass('active');
 </script>
 @stop
 @stop

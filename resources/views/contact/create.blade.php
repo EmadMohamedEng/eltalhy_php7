@@ -85,7 +85,7 @@
 </section>
 @section('scriptActive')
 <script type="text/javascript">
-  $('a[href="{{ url(' / contactus ')}}"]').parent().addClass('active');
+  $('a[href="{{ url('/contactus')}}"]').parent().addClass('active');
 </script>
 @stop
 @stop
