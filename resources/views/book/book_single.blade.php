@@ -127,7 +127,7 @@
 
 <div class="pdf_download">
   <a href="{{url('book/'.$book->id.'/download')}}">
-    <img src="../img/book_1.jpg" alt="">
+    <img src="{{url($cover->photo_path)}}" alt="">
   </a>
 
   <a class="pdf_link" href="{{url('book/'.$book->id.'/download')}}">تحميل الكتاب <i class="fa fa-book" aria-hidden="true"></i></a>

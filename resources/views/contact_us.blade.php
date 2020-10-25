@@ -8,22 +8,33 @@
 </head>
 <style>
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid #00000000;
     padding: 2px;
 }
 </style>
 <body>
-    <table>
-        <thead>
-            <th>Name:</th>
-            <th>Email:</th>
-            <th>Message:</th>
-        </thead>
-        <tbody>
-            <td>{{$contact->name}}</td>
-            <td>{{$contact->email}}</td>
-            <td>{{$contact->message}}</td>
-        </tbody>
-    </table>
+
+<marquee behavior="scroll" direction="left" style="font-weight: bold" >please check this message from Eltalhy website :</marquee>
+
+    <div class="table-responsive">
+          <table class="table table-striped table-bordered ">
+            <tbody>
+              <tr>
+                <td width='30%' class='label-view text-right' style="font-weight: bold">Name:</td>
+                <td>{{$contact->name}} </td>
+              </tr>
+              <tr>
+                <td width='30%' class='label-view text-right' style="font-weight: bold">Email:</td>
+                <td>{{$contact->email}} </td>
+              </tr>
+              <tr>
+                <td width='30%' class='label-view text-right' style="font-weight: bold">Message:</td>
+                <td>{{$contact->message}} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
 </body>
 </html>

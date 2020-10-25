@@ -29,11 +29,11 @@
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
                         <div class="sounds_img">
-                            <img class="img-responsive" src="{{url($album->image)}}" alt="برنامج تبسم">
+                            <img class="img-responsive" src="{{url($album->image)}}" style="width: 100%;" alt="برنامج تبسم">
                         </div>
                         <div class="caption">
-                            <h3><a href="{{ url('/sounds/'.$album->id.'/album')}}">{{$album->name}}</a></h3>
-                            <p>{{$album->description}}</p>
+                            <h3 style="text-align: center;"><a href="{{ url('/sounds/'.$album->id.'/album')}}">{{$album->name}}</a></h3>
+                            <p style="text-align: center;">{{$album->description}}</p>
                         </div>
                     </div>
                 </div>
