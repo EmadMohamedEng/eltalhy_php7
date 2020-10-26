@@ -44,7 +44,7 @@
             <button type="button" class="navbar-toggle navbar-btn collapsed" data-toggle="collapse" data-target="#sidebar">
                 <span class="fa fa-bars"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{url('/')}}">
                 <small>
                     <i class="fa fa-desktop"></i>
                     El-Talhy Dashboard
