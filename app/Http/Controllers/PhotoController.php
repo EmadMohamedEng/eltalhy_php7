@@ -28,20 +28,20 @@ class PhotoController extends Controller
     public function index($category="")
     {
         $title = 'Index - photo';
+        $categoryFilter = null;
         if ($category == "") {
             $photos = Photo::all();
         }else{
-            $category = Category::where('name',$category)->first();
-            $photos = $category->photos;
+            $categoryFilter = Category::where('name',$category)->first();
+            $photos = $categoryFilter->photos->sortByDesc('id');
         }
         $categories = Category::all();
-        return view('photo.index',compact('photos','title','categories'));
+        return view('photo.index',compact('photos','title','categories','categoryFilter'));
     }
 
     public function gallary(Request $request)
     {
-        $photos = Photo::paginate(9);
-
+        $photos = Photo::orderBy('id', 'desc')->paginate(9);
         if($request->ajax()){
             return view('photo.photo_pages',compact('photos'))->render();
         }

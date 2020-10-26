@@ -13,7 +13,7 @@
 
     <!-- BEGIN Breadcrumb -->
     <div id="breadcrumbs">
-       <ul class="breadcrumb">
+        <ul class="breadcrumb">
             <li>
                 <i class="fa fa-home"></i>
                 <a href="{{url('dashboard')}}">Home</a>
@@ -23,11 +23,11 @@
         </ul>
     </div>
     <!-- END Breadcrumb -->
-     @if ( Session::has('success') )
-        <div class="alert alert-success alert-dismissible">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong>sucess!</strong> {{ Session::get('success')}}
-        </div>
+    @if ( Session::has('success') )
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>sucess!</strong> {{ Session::get('success')}}
+    </div>
     @endif
     <!-- BEGIN Main Content -->
     <div class="row">
@@ -45,10 +45,18 @@
                         <div class="pull-left">
                             <div class="btn-toolbar">
                                 <div class="btn-group">
-                                    <select name="category" class="chosen gallery-cat col-xs-12" onchange="applyFilter()" data-placeholder="Filter category">
+                                    <select name="category" class="chosen gallery-cat col-xs-12"
+                                        onchange="applyFilter()" data-placeholder="Filter category">
                                         <option value=""> </option>
                                         @foreach($categories as $category)
-                                            <option value="{{$category->name}}">{{$category->name}}</option>
+
+                                        @if (isset($categoryFilter))
+                                        <option value="{{$category->name}}" @if($categoryFilter->name==$category->name)
+                                            selected="selected" @endif>{{$category->name}}</option>
+                                        @else
+                                        <option value="{{$category->name}}">{{$category->name}}</option>
+                                        @endif
+
                                         @endforeach
                                     </select>
                                 </div>
@@ -62,7 +70,8 @@
                         <div class="pull-right">
                             <div class="btn-toolbar">
                                 <div class="btn-group">
-                                    <a href="{{url('photo/new')}}" class="btn btn-primary show-tooltip" title="Upload new images"><i class="fa fa-cloud-upload"></i> Upload</a>
+                                    <a href="{{url('photo/new')}}" class="btn btn-primary show-tooltip"
+                                        title="Upload new images"><i class="fa fa-cloud-upload"></i> Upload</a>
                                 </div>
                             </div>
                         </div>
@@ -70,17 +79,17 @@
                     <hr>
                     <ul class="gallery">
                         @foreach($photos as $photo)
-                            <li>
-                                <a href="{{url($photo->photo_path)}}" rel="prettyPhoto" title="{{url($photo->title)}}">
-                                    <div>
-                                        <img src="{{url($photo->photo_path)}}" width="230" height="173" alt="" />
-                                        <i></i>
-                                    </div>
-                                </a>
-                                <div class="gallery-tools">
-                                    <a href="{{url('photo/'.$photo->id.'/delete')}}"><i class="fa fa-trash-o"></i></a>
+                        <li>
+                            <a href="{{url($photo->photo_path)}}" rel="prettyPhoto" title="{{$photo->title}}">
+                                <div>
+                                    <img src="{{url($photo->photo_path)}}" width="230" height="173" alt="" />
+                                    <i></i>
                                 </div>
-                            </li>
+                            </a>
+                            <div class="gallery-tools">
+                                <a href="{{url('photo/'.$photo->id.'/delete')}}"><i class="fa fa-trash-o"></i></a>
+                            </div>
+                        </li>
                         @endforeach
                     </ul>
                 </div>
@@ -96,7 +105,7 @@
 @endsection
 
 @section('customScript')
-    <script>
+<script>
         $('#photo').addClass('active');
         $('#photo-index').addClass('active');
         function applyFilter(argument) {
