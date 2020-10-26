@@ -33,7 +33,7 @@
                 <ul id="portfolio-filter" class="list-unstyled">
                     <li><a class="current" href="#all" title="">الكل</a></li>
                     @foreach($categories as $category)
-                        <li><a href="#category_{{$category->id}}" title="" rel="mo7adrat">{{$category->name}}</a></li>
+                        <li><a href="#category_{{$category->id}}" class="category"  title="" rel="mo7adrat">{{$category->name}}</a></li>
                     @endforeach
                    {{--  <li><a href="#mo7adrat" title="" rel="mo7adrat">محاضرات</a></li>
                     <li><a href="#re7lat" title="" rel="re7lat">رحلات</a></li>
@@ -48,7 +48,7 @@
         <div class="container lightGallery" action="inactive" page='1'>
             <ul id="lightGallery" class="gallery list-unstyled">
                 @foreach($photos as $photo)
-                    <li class="category_{{$photo->category->id}}" id="{{$photo->category->id}}" data-src="{{url($photo->photo_path)}}">
+                    <li class="category_{{$photo->category->id}}" data-src="{{url($photo->photo_path)}}">
                         <a href="#">
                         <img class="lazy" data-original="{{url($photo->photo_path)}}" />
                         <p>{{$photo->title}}</p>
@@ -90,34 +90,18 @@
         type: 'GET',
         url: '?page=' + page,
         success: function(data) {
-        console.log(data);
-
           $('#lightGallery').append(data);
           $('.lightGallery').attr('action', 'inactive');
           $("img.lazy").lazyload();
           $(`#${page}`).lightGallery();
+          
 
         }
       })
     }
 
   </script>
-  <script>
 
-$('#second_party_type_cli').on('change', function() {
-        console.log("omar");
-        $.ajax({
-                method: 'GET',
-                url: "{{url('/client_type')}}",
-                data: {
-                    body: $(this).val(),
-                }
-            })
-            .done(function(client_type) {
-                $('#second_party_id').html(client_type);
-            });
-    });
-  </script>
 @stop
 
 @stop
