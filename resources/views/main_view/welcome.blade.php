@@ -160,7 +160,7 @@
                     <li data-src="{{url($photo->photo_path)}}" >
                         <a href="#">
                         <img src="{{url($photo->photo_path)}}" />
-                        <p>عنوان يعبر عن الصورة</p>
+                        <p>{{$photo->title}}</p>
                         </a>
                     </li>
                 @endforeach
