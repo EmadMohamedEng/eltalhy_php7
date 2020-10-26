@@ -138,7 +138,7 @@
                     <li data-src="<?php echo e(url($photo->photo_path)); ?>" >
                         <a href="#">
                         <img src="<?php echo e(url($photo->photo_path)); ?>" />
-                        <p>عنوان يعبر عن الصورة</p>
+                        <p><?php echo e($photo->title); ?></p>
                         </a>
                     </li>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

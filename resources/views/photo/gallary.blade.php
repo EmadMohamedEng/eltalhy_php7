@@ -48,7 +48,7 @@
         <div class="container lightGallery" action="inactive" page='1'>
             <ul id="lightGallery" class="gallery list-unstyled">
                 @foreach($photos as $photo)
-                    <li class="category_{{$photo->category->id}}" data-src="{{url($photo->photo_path)}}">
+                    <li class="category_{{$photo->category->id}}" id="{{$photo->category->id}}" data-src="{{url($photo->photo_path)}}">
                         <a href="#">
                         <img class="lazy" data-original="{{url($photo->photo_path)}}" />
                         <p>{{$photo->title}}</p>
@@ -79,6 +79,7 @@
         $('.lightGallery').attr('action', 'active');
         page++;
         $('.lightGallery').attr('page', page);
+
         load_snap_data(page);
       }
     });
@@ -89,6 +90,7 @@
         type: 'GET',
         url: '?page=' + page,
         success: function(data) {
+        console.log(data);
 
           $('#lightGallery').append(data);
           $('.lightGallery').attr('action', 'inactive');
@@ -99,6 +101,22 @@
       })
     }
 
+  </script>
+  <script>
+
+$('#second_party_type_cli').on('change', function() {
+        console.log("omar");
+        $.ajax({
+                method: 'GET',
+                url: "{{url('/client_type')}}",
+                data: {
+                    body: $(this).val(),
+                }
+            })
+            .done(function(client_type) {
+                $('#second_party_id').html(client_type);
+            });
+    });
   </script>
 @stop
 

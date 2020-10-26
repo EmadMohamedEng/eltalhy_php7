@@ -41,7 +41,10 @@ class PhotoController extends Controller
 
     public function gallary(Request $request)
     {
-        $photos = Photo::orderBy('id', 'desc')->paginate(9);
+
+      // $fragment = parse_url($request->url(), PHP_URL_FRAGMENT);
+      // dd($fragment);
+        $photos = Photo::orderBy('id', 'Desc')->paginate(9);
         if($request->ajax()){
             return view('photo.photo_pages',compact('photos'))->render();
         }
