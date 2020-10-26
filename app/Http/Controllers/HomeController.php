@@ -23,7 +23,6 @@ class HomeController extends Controller
         $settings_ = Setting::all();
         $settings = array();
         $book = Book::first();
-        echo  $book->id ; die;
         foreach ($settings_ as $setting) {
             $settings[$setting->key] = $setting->value;
         }
