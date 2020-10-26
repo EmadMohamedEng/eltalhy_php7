@@ -30,10 +30,10 @@
                 <h2>ألبوم الصور</h2>
             </div>
             <div class="col-md-9 col-sm-12 col-xs-12 text-left">
-                <ul id="portfolio-filter" class="list-unstyled">
+                <ul id="portfolio-filters" class="list-unstyled">
                     <li><a class="current" href="#all" title="">الكل</a></li>
                     @foreach($categories as $category)
-                        <li><a href="#category_{{$category->id}}" class="category"  title="" rel="mo7adrat">{{$category->name}}</a></li>
+                        <li id="{{$category->id}}"><a href="#category_{{$category->id}}" class="category"  title="" rel="mo7adrat">{{$category->name}}</a></li>
                     @endforeach
                    {{--  <li><a href="#mo7adrat" title="" rel="mo7adrat">محاضرات</a></li>
                     <li><a href="#re7lat" title="" rel="re7lat">رحلات</a></li>
@@ -73,6 +73,7 @@
       $(this).addClass('active');
       var action = $('.lightGallery').attr('action');
       var page = $('.lightGallery').attr('page');
+      var category_id = $('.lightGallery').attr('category_id');
       console.log(page);
     //   if ($(window).scrollTop() + $(window).height() > $(".lightGallery").height() && action == 'inactive') {
       if ($(window).scrollTop() + $(window).height() == $(document).height() && action == 'inactive') {
@@ -80,25 +81,46 @@
         page++;
         $('.lightGallery').attr('page', page);
 
-        load_snap_data(page);
+        load_snap_data(page, category_id);
       }
     });
 
-    function load_snap_data(page) {
+    function load_snap_data(page, category_id) {
       $('.load').show();
       $.ajax({
         type: 'GET',
-        url: '?page=' + page,
+        url: '?page=' + page + '&category_id=' + category_id,
         success: function(data) {
           $('#lightGallery').append(data);
           $('.lightGallery').attr('action', 'inactive');
           $("img.lazy").lazyload();
           $(`#${page}`).lightGallery();
-          
+
 
         }
       })
     }
+
+    $('#portfolio-filters li').click(function(){
+
+      var category_id = $(this).attr('id');
+      $('.lightGallery').attr('category_id', category_id);
+      console.log($('.lightGallery').attr('category_id'));
+
+      $.ajax({
+        type: "post",
+        url: "{{url('gallery_category_id')}}",
+        data: {'category_id': category_id},
+        success: function (data) {
+          $('#lightGallery').html(data);
+          $('.lightGallery').attr('action', 'inactive');
+          $("img.lazy").lazyload();
+          $(`#category_id_${category_id}`).lightGallery();
+          $('.lightGallery').attr('page', 1);
+        }
+      });
+
+    });
 
   </script>
 

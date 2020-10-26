@@ -1,4 +1,4 @@
-<ul id="{{request('page')}}" class="gallery list-unstyled">
+<ul id="{{"category_id_$category_id"}}" class="gallery list-unstyled">
   @foreach($photos as $photo)
   <li class="category_{{$photo->category->id}}" data-src="{{url($photo->photo_path)}}">
       <a href="#">

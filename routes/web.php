@@ -156,11 +156,13 @@ Route::get('/', 'HomeController@index');
 Route::post('newsletter', 'NewsletterController@store');
 Route::get('newsletter/campaign/new', 'NewsletterController@create');
 Route::post('campaign', 'NewsletterController@send_campain');
+Route::get('dailyMail', 'NewsletterController@dailyMail');
 
 Route::post('contact', 'ContactController@store');
 Route::get('contactus', 'ContactController@create');
 
 Route::get('/gallary', 'PhotoController@gallary');
+Route::post('/gallery_category_id', 'PhotoController@gallery_category_id');
 
 Route::get('messages', 'MessageController@messages');
 
