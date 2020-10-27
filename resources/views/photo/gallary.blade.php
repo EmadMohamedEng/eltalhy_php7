@@ -33,7 +33,7 @@
                 <ul id="portfolio-filters" class="list-unstyled">
                     <li><a class="current" href="#all" title="">الكل</a></li>
                     @foreach($categories as $category)
-                        <li id="{{$category->id}}"><a href="#category_{{$category->id}}" class="category"  title="" rel="mo7adrat">{{$category->name}}</a></li>
+                        <li data-id="{{$category->id}}"><a href="#category_{{$category->id}}" class="category"  title="" rel="mo7adrat">{{$category->name}}</a></li>
                     @endforeach
                    {{--  <li><a href="#mo7adrat" title="" rel="mo7adrat">محاضرات</a></li>
                     <li><a href="#re7lat" title="" rel="re7lat">رحلات</a></li>
@@ -103,7 +103,7 @@
 
     $('#portfolio-filters li').click(function(){
 
-      var category_id = $(this).attr('id');
+      var category_id = $(this).data('id');
       $('.lightGallery').attr('category_id', category_id);
       console.log($('.lightGallery').attr('category_id'));
 
