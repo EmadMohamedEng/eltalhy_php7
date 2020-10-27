@@ -44,7 +44,7 @@
                           @if($about->photo_path)
                             <img class="img-responsive img-thumbnail" src="{{url($about->photo_path)}}" alt="profile picture" />
                             @else
-                            <img class="img-responsive img-thumbnail" src="" alt="profile picture" />
+                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
                             @endif
                             <br/><br/>
                         </div>

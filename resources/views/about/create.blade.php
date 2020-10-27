@@ -64,7 +64,7 @@
                                    <span class="btn btn-default btn-file">
                                         <span class="fileupload-new">Select image</span>
                                         <span class="fileupload-exists">Change</span>
-                                        <input type="file" class="file-input" name="photo_path" required />
+                                        <input type="file" class="file-input" name="photo_path" />
                                     </span>
                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
                                 </div>
@@ -73,7 +73,7 @@
                              <span>Attached image img-thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only</span>
                           </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">Description</label>
                             <div class="col-sm-9 col-lg-10 controls">
