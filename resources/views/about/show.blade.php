@@ -41,7 +41,11 @@
                 <div class="box-content">
                     <div class="row">
                         <div class="col-md-3">
+                          @if($about->photo_path)
                             <img class="img-responsive img-thumbnail" src="{{url($about->photo_path)}}" alt="profile picture" />
+                            @else
+                            <img class="img-responsive img-thumbnail" src="" alt="profile picture" />
+                            @endif
                             <br/><br/>
                         </div>
                         <div class="col-md-9 user-profile-info">
