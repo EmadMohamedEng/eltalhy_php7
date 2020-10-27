@@ -44,7 +44,7 @@ class PhotoController extends Controller
 
         $category_id = $request->category_id;
 
-        if ($category_id != 'undefined') {
+        if ($category_id && $category_id != 'undefined') {
             $photos = $photos->where('category_id', $category_id);
         }
 
@@ -135,7 +135,7 @@ class PhotoController extends Controller
 
         $category_id = $request->category_id;
 
-        if ($category_id) {
+        if ($category_id && $category_id != 'undefined') {
             $photos = $photos->where('category_id', $category_id);
         }
 

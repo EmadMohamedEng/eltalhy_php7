@@ -31,9 +31,9 @@
             </div>
             <div class="col-md-9 col-sm-12 col-xs-12 text-left">
                 <ul id="portfolio-filters" class="list-unstyled">
-                    <li><a class="current" href="#all" title="">الكل</a></li>
+                    <li><a class="current" href="#all" id="all_photo" title="">الكل</a></li>
                     @foreach($categories as $category)
-                        <li data-id="{{$category->id}}"><a href="#category_{{$category->id}}" class="category"  title="" rel="mo7adrat">{{$category->name}}</a></li>
+                        <li data-id="{{$category->id}}"><a href="#category_{{$category->id}}" class="category_{{$category->id}}"  title="" rel="mo7adrat">{{$category->name}}</a></li>
                     @endforeach
                    {{--  <li><a href="#mo7adrat" title="" rel="mo7adrat">محاضرات</a></li>
                     <li><a href="#re7lat" title="" rel="re7lat">رحلات</a></li>
@@ -106,6 +106,9 @@
       var category_id = $(this).data('id');
       $('.lightGallery').attr('category_id', category_id);
       console.log($('.lightGallery').attr('category_id'));
+
+      $(this).children().addClass('current');
+      $(this).siblings().children().removeClass('current');
 
       $.ajax({
         type: "post",
