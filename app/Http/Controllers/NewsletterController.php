@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\App;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Newsletter;
-use Amranidev\Ajaxis\Ajaxis;
 use URL;
 use Validator;
+use App\Newsletter;
+use Amranidev\Ajaxis\Ajaxis;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use App\Http\Controllers\Controller;
+use App\Http\Repositories\NewsletterRepository;
+use App\Http\Services\Newsletter\NewsletterSendMailService;
 
 /**
  * Class NewsletterController.
@@ -18,6 +20,19 @@ use Validator;
  */
 class NewsletterController extends Controller
 {
+
+    protected $newsletterRepository;
+    protected $newsletterSendMailService;
+
+    public function __construct(
+      NewsletterRepository $newsletterRepository,
+      NewsletterSendMailService $newsletterSendMailService
+      )
+    {
+      $this->newsletterRepository = $newsletterRepository;
+      $this->newsletterSendMailService = $newsletterSendMailService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +62,7 @@ class NewsletterController extends Controller
             'required' => ':attribute مطلوب.',
             'email' => ':attribute يجب ان يكون صحيح.',
         ];
-        
+
         $validator = Validator::make($request->all(),$rules,$messages);
 
         if ($validator->fails()) {
@@ -55,11 +70,11 @@ class NewsletterController extends Controller
         }
         $newsletter = new Newsletter();
 
-        
+
         $newsletter->email = $request->contact_email;
 
-        
-        
+
+
         $newsletter->save();
 
         $request->session()->flash('success', 'تم ارسال البريد الالكترونى بنجاح');
@@ -76,7 +91,7 @@ class NewsletterController extends Controller
     public function send_campain(Request $request)
     {
         $newsletters = Newsletter::all();
-        
+
         return $request->all();
     }
 
@@ -91,5 +106,10 @@ class NewsletterController extends Controller
      	$newsletter = Newsletter::findOrfail($id);
      	$newsletter->delete();
         return back();
+    }
+
+    public function dailyMail(Request $request)
+    {
+      $this->newsletterSendMailService->handle($request->all());
     }
 }

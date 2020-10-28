@@ -30,10 +30,10 @@
                 <h2>ألبوم الصور</h2>
             </div>
             <div class="col-md-9 col-sm-12 col-xs-12 text-left">
-                <ul id="portfolio-filter" class="list-unstyled">
-                    <li><a class="current" href="#all" title="">الكل</a></li>
+                <ul id="portfolio-filters" class="list-unstyled">
+                    <li><a class="current" href="#all" id="all_photo" title="">الكل</a></li>
                     @foreach($categories as $category)
-                        <li><a href="#category_{{$category->id}}" title="" rel="mo7adrat">{{$category->name}}</a></li>
+                        <li data-id="{{$category->id}}"><a href="#category_{{$category->id}}" class="category_{{$category->id}}"  title="" rel="mo7adrat">{{$category->name}}</a></li>
                     @endforeach
                    {{--  <li><a href="#mo7adrat" title="" rel="mo7adrat">محاضرات</a></li>
                     <li><a href="#re7lat" title="" rel="re7lat">رحلات</a></li>
@@ -48,7 +48,7 @@
         <div class="container lightGallery" action="inactive" page='1'>
             <ul id="lightGallery" class="gallery list-unstyled">
                 @foreach($photos as $photo)
-                    <li class="category_{{$photo->category->id}}" id="{{$photo->category->id}}" data-src="{{url($photo->photo_path)}}">
+                    <li class="category_{{$photo->category->id}}" data-src="{{url($photo->photo_path)}}">
                         <a href="#">
                         <img class="lazy" data-original="{{url($photo->photo_path)}}" />
                         <p>{{$photo->title}}</p>
@@ -73,6 +73,7 @@
       $(this).addClass('active');
       var action = $('.lightGallery').attr('action');
       var page = $('.lightGallery').attr('page');
+      var category_id = $('.lightGallery').attr('category_id');
       console.log(page);
     //   if ($(window).scrollTop() + $(window).height() > $(".lightGallery").height() && action == 'inactive') {
       if ($(window).scrollTop() + $(window).height() == $(document).height() && action == 'inactive') {
@@ -80,44 +81,52 @@
         page++;
         $('.lightGallery').attr('page', page);
 
-        load_snap_data(page);
+        load_snap_data(page, category_id);
       }
     });
 
-    function load_snap_data(page) {
+    function load_snap_data(page, category_id) {
       $('.load').show();
       $.ajax({
         type: 'GET',
-        url: '?page=' + page,
+        url: '?page=' + page + '&category_id=' + category_id,
         success: function(data) {
-        console.log(data);
-
           $('#lightGallery').append(data);
           $('.lightGallery').attr('action', 'inactive');
           $("img.lazy").lazyload();
           $(`#${page}`).lightGallery();
 
+
         }
       })
     }
 
-  </script>
-  <script>
+    $('#portfolio-filters li').click(function(){
 
-$('#second_party_type_cli').on('change', function() {
-        console.log("omar");
-        $.ajax({
-                method: 'GET',
-                url: "{{url('/client_type')}}",
-                data: {
-                    body: $(this).val(),
-                }
-            })
-            .done(function(client_type) {
-                $('#second_party_id').html(client_type);
-            });
+      var category_id = $(this).data('id');
+      $('.lightGallery').attr('category_id', category_id);
+      console.log($('.lightGallery').attr('category_id'));
+
+      $(this).children().addClass('current');
+      $(this).siblings().children().removeClass('current');
+
+      $.ajax({
+        type: "post",
+        url: "{{url('gallery_category_id')}}",
+        data: {'category_id': category_id},
+        success: function (data) {
+          $('#lightGallery').html(data);
+          $('.lightGallery').attr('action', 'inactive');
+          $("img.lazy").lazyload();
+          $(`#category_id_${category_id}`).lightGallery();
+          $('.lightGallery').attr('page', 1);
+        }
+      });
+
     });
+
   </script>
+
 @stop
 
 @stop

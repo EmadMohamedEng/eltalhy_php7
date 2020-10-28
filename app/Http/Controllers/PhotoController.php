@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\App;
-use Illuminate\Http\Request;
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Photo;
-use Amranidev\Ajaxis\Ajaxis;
-use URL;
 use App\Setting;
-use App\Category;
-use Validator;
 use File;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Validator;
+
 /**
  * Class PhotoController.
  *
@@ -25,28 +24,34 @@ class PhotoController extends Controller
      *
      * @return  \Illuminate\Http\Response
      */
-    public function index($category="")
+    public function index($category = "")
     {
         $title = 'Index - photo';
         $categoryFilter = null;
         if ($category == "") {
             $photos = Photo::all();
-        }else{
-            $categoryFilter = Category::where('name',$category)->first();
+        } else {
+            $categoryFilter = Category::where('name', $category)->first();
             $photos = $categoryFilter->photos->sortByDesc('id');
         }
         $categories = Category::all();
-        return view('photo.index',compact('photos','title','categories','categoryFilter'));
+        return view('photo.index', compact('photos', 'title', 'categories', 'categoryFilter'));
     }
 
     public function gallary(Request $request)
     {
+        $photos = new Photo;
 
-      // $fragment = parse_url($request->url(), PHP_URL_FRAGMENT);
-      // dd($fragment);
-        $photos = Photo::orderBy('id', 'Desc')->paginate(9);
-        if($request->ajax()){
-            return view('photo.photo_pages',compact('photos'))->render();
+        $category_id = $request->category_id;
+
+        if ($category_id && $category_id != 'undefined') {
+            $photos = $photos->where('category_id', $category_id);
+        }
+
+        $photos = $photos->orderBy('id', 'Desc')->paginate(9);
+
+        if ($request->ajax()) {
+            return view('photo.photo_pages', compact('photos'))->render();
         }
 
         $settings_ = Setting::all();
@@ -55,7 +60,7 @@ class PhotoController extends Controller
             $settings[$setting->key] = $setting->value;
         }
         $categories = Category::all();
-        return view('photo.gallary',compact('photos','categories','settings'));
+        return view('photo.gallary', compact('photos', 'categories', 'settings'));
     }
     /**
      * Show the form for creating a new resource.
@@ -68,7 +73,7 @@ class PhotoController extends Controller
 
         $categories = Category::all();
 
-        return view('photo.create',compact('title','categories'));
+        return view('photo.create', compact('title', 'categories'));
     }
 
     /**
@@ -79,7 +84,7 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             // 'title' => 'required',
             'photo_path' => 'required|image',
             'category_id' => 'required|numeric',
@@ -91,18 +96,14 @@ class PhotoController extends Controller
         // return $request->all();
         $photo = new Photo();
 
-
         $photo->title = $request->title;
 
-
         $photo->photo_path = $request->photo_path;
-
-
 
         $photo->category_id = $request->category_id;
 
         if ($request->hasFile('photo_path')) {
-            $path = $request->file('photo_path')->move('uploads/photo/', time().'_'.$request->file('photo_path')->getClientOriginalName());
+            $path = $request->file('photo_path')->move('uploads/photo/', time() . '_' . $request->file('photo_path')->getClientOriginalName());
             $photo->photo_path = $path;
         }
 
@@ -110,7 +111,6 @@ class PhotoController extends Controller
         $request->session()->flash('success', 'Photo Added Successfuly');
         return redirect('photo');
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -125,7 +125,22 @@ class PhotoController extends Controller
         if ($photo->photo_path) {
             File::delete($photo->photo_path);
         }
-     	$photo->delete();
+        $photo->delete();
         return back();
+    }
+
+    public function gallery_category_id(Request $request)
+    {
+        $photos = new Photo;
+
+        $category_id = $request->category_id;
+
+        if ($category_id && $category_id != 'undefined') {
+            $photos = $photos->where('category_id', $category_id);
+        }
+
+        $photos = $photos->orderBy('id', 'Desc')->paginate(9);
+
+        return view('photo.photo_categorys', compact('photos', 'category_id'))->render();
     }
 }

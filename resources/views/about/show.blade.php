@@ -41,7 +41,11 @@
                 <div class="box-content">
                     <div class="row">
                         <div class="col-md-3">
+                          @if($about->photo_path)
                             <img class="img-responsive img-thumbnail" src="{{url($about->photo_path)}}" alt="profile picture" />
+                            @else
+                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                            @endif
                             <br/><br/>
                         </div>
                         <div class="col-md-9 user-profile-info">
