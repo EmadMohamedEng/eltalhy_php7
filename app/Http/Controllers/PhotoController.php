@@ -29,7 +29,7 @@ class PhotoController extends Controller
         $title = 'Index - photo';
         $categoryFilter = null;
         if ($category == "") {
-            $photos = Photo::all();
+            $photos = Photo::all()->sortByDesc('id');
         } else {
             $categoryFilter = Category::where('name', $category)->first();
             $photos = $categoryFilter->photos->sortByDesc('id');
