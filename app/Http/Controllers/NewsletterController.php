@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use URL;
 use Validator;
 use App\Newsletter;
+use App\Jobs\SendEmails;
 use Amranidev\Ajaxis\Ajaxis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -88,11 +89,9 @@ class NewsletterController extends Controller
         return view('newsletter.campaign',compact('title'));
     }
 
-    public function send_campain(Request $request)
+    public function send_campain()
     {
-        $newsletters = Newsletter::all();
-
-        return $request->all();
+        SendEmails::dispatch();
     }
 
     /**

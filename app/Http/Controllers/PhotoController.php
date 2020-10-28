@@ -29,7 +29,7 @@ class PhotoController extends Controller
         $title = 'Index - photo';
         $categoryFilter = null;
         if ($category == "") {
-            $photos = Photo::all();
+            $photos = Photo::all()->sortByDesc('id');
         } else {
             $categoryFilter = Category::where('name', $category)->first();
             $photos = $categoryFilter->photos->sortByDesc('id');
@@ -48,7 +48,6 @@ class PhotoController extends Controller
         if ($category_id && $category_id != 'undefined') {
             $photos = $photos->where('category_id', $category_id);
         }
-
         $photos = $photos->orderBy('id', 'Desc')->paginate(9);
 
         if ($request->ajax()) {
