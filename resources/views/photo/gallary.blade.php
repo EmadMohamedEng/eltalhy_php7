@@ -31,7 +31,8 @@
             </div>
             <div class="col-md-9 col-sm-12 col-xs-12 text-left">
                 <ul id="portfolio-filters" class="list-unstyled">
-                    <li><a class="current" href="#all" id="all_photo" title="">الكل</a></li>
+                    <li data-id="undefined"><a class="current" href="#all" title="">الكل</a></li>
+
                     @foreach($categories as $category)
                         <li data-id="{{$category->id}}"><a href="#category_{{$category->id}}" class="category_{{$category->id}}"  title="" rel="mo7adrat">{{$category->name}}</a></li>
                     @endforeach
@@ -74,7 +75,8 @@
       var action = $('.lightGallery').attr('action');
       var page = $('.lightGallery').attr('page');
       var category_id = $('.lightGallery').attr('category_id');
-      console.log(page);
+      console.log("page = "+page);
+      console.log("category_id = "+category_id);
     //   if ($(window).scrollTop() + $(window).height() > $(".lightGallery").height() && action == 'inactive') {
       if ($(window).scrollTop() + $(window).height() == $(document).height() && action == 'inactive') {
         $('.lightGallery').attr('action', 'active');
@@ -91,7 +93,13 @@
         type: 'GET',
         url: '?page=' + page + '&category_id=' + category_id,
         success: function(data) {
+        if(page == 1){
+          $('#lightGallery').html(data);
+          $('.lightGallery').attr('page', 1);
+        }else{
           $('#lightGallery').append(data);
+        }
+
           $('.lightGallery').attr('action', 'inactive');
           $("img.lazy").lazyload();
           $(`#${page}`).lightGallery();
@@ -110,6 +118,9 @@
       $(this).children().addClass('current');
       $(this).siblings().children().removeClass('current');
 
+      page = 1 ;
+      load_snap_data(page, category_id);
+/*
       $.ajax({
         type: "post",
         url: "{{url('gallery_category_id')}}",
@@ -122,6 +133,7 @@
           $('.lightGallery').attr('page', 1);
         }
       });
+      */
 
     });
 
