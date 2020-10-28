@@ -75,8 +75,8 @@
       var action = $('.lightGallery').attr('action');
       var page = $('.lightGallery').attr('page');
       var category_id = $('.lightGallery').attr('category_id');
-      console.log("page = "+page);
-      console.log("category_id = "+category_id);
+    //  console.log("page = "+page);
+    //  console.log("category_id = "+category_id);
     //   if ($(window).scrollTop() + $(window).height() > $(".lightGallery").height() && action == 'inactive') {
       if ($(window).scrollTop() + $(window).height() == $(document).height() && action == 'inactive') {
         $('.lightGallery').attr('action', 'active');
