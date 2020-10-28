@@ -43,6 +43,7 @@ class PhotoController extends Controller
         $photos = new Photo;
 
         $category_id = $request->category_id;
+        $page_id = $request->page;
 
         if ($category_id && $category_id != 'undefined') {
             $photos = $photos->where('category_id', $category_id);
@@ -50,7 +51,7 @@ class PhotoController extends Controller
         $photos = $photos->orderBy('id', 'Desc')->paginate(9);
 
         if ($request->ajax()) {
-          return view('photo.photo_pages', compact('photos'))->render();
+            return view('photo.photo_pages', compact('photos','page_id'))->render();
         }
 
         $settings_ = Setting::all();

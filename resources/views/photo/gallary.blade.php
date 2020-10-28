@@ -74,7 +74,8 @@
       var action = $('.lightGallery').attr('action');
       var page = $('.lightGallery').attr('page');
       var category_id = $('.lightGallery').attr('category_id');
-      console.log(page);
+      console.log("page = "+page);
+      console.log("category_id = "+category_id);
     //   if ($(window).scrollTop() + $(window).height() > $(".lightGallery").height() && action == 'inactive') {
       if ($(window).scrollTop() + $(window).height() == $(document).height() && action == 'inactive') {
         $('.lightGallery').attr('action', 'active');
@@ -91,7 +92,13 @@
         type: 'GET',
         url: '?page=' + page + '&category_id=' + category_id,
         success: function(data) {
+        if(page == 1){
+          $('#lightGallery').html(data);
+          $('.lightGallery').attr('page', 1);
+        }else{
           $('#lightGallery').append(data);
+        }
+
           $('.lightGallery').attr('action', 'inactive');
           $("img.lazy").lazyload();
           $(`#${page}`).lightGallery();
@@ -110,6 +117,9 @@
       $(this).children().addClass('current');
       $(this).siblings().children().removeClass('current');
 
+      page = 1 ;
+      load_snap_data(page, category_id);
+/*
       $.ajax({
         type: "post",
         url: "{{url('gallery_category_id')}}",
@@ -122,6 +132,7 @@
           $('.lightGallery').attr('page', 1);
         }
       });
+      */
 
     });
 
