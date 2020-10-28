@@ -44,14 +44,13 @@ class PhotoController extends Controller
 
         $category_id = $request->category_id;
 
-        if ($category_id != 'undefined') {
+        if ($category_id && $category_id != 'undefined') {
             $photos = $photos->where('category_id', $category_id);
         }
-
         $photos = $photos->orderBy('id', 'Desc')->paginate(9);
 
         if ($request->ajax()) {
-            return view('photo.photo_pages', compact('photos'))->render();
+          return view('photo.photo_pages', compact('photos'))->render();
         }
 
         $settings_ = Setting::all();
@@ -135,7 +134,7 @@ class PhotoController extends Controller
 
         $category_id = $request->category_id;
 
-        if ($category_id) {
+        if ($category_id && $category_id != 'undefined') {
             $photos = $photos->where('category_id', $category_id);
         }
 

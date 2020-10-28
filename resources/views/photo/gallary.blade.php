@@ -31,7 +31,7 @@
             </div>
             <div class="col-md-9 col-sm-12 col-xs-12 text-left">
                 <ul id="portfolio-filters" class="list-unstyled">
-                    <li><a class="current" href="#all" title="">الكل</a></li>
+                    <li data-id="undefined"><a class="current" href="#all" title="">الكل</a></li>
                     @foreach($categories as $category)
                         <li data-id="{{$category->id}}"><a href="#category_{{$category->id}}" class="category"  title="" rel="mo7adrat">{{$category->name}}</a></li>
                     @endforeach
