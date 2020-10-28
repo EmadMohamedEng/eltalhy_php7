@@ -50,7 +50,6 @@ class AboutController extends Controller
         $validator = Validator::make($request->all(),[
                 'title' => 'required|unique:abouts',
                 'description' => 'required',
-                'photo_path' => 'required|image'
         ]);
 
         if ($validator->fails()) {
